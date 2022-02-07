@@ -1,7 +1,8 @@
 <template>
   <div class="right-nav-bar">
-    <div class="nav-item" @click="onClickHome()">Home</div>
-    <div class="nav-item" @click="onClickProjects()">Projects</div>
+    <div class="nav-item" @click="onClickLink('home')">Home</div>
+    <div class="nav-item" @click="onClickLink('projects')">Projects</div>
+    <div class="nav-item" @click="onClickLink('experience')">Experience</div>
   </div>
 </template>
 
@@ -12,24 +13,14 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export default {
   methods: {
-    onClickHome() {
+    onClickLink(link) {
       if (this.$router.currentRoute.path != "/home") {
-        this.$router.push({ path: "/home", hash: "#home" });
+        this.$router.push({ path: "/home", hash: `#${link}` });
       } else {
-        if (this.$route.hash != "#home") {
-          this.$router.replace({ path: "/home", hash: "#home" });
+        if (this.$route.hash != `#${link}`) {
+          this.$router.replace({ path: "/home", hash: `#${link}` });
         }
-        gsap.to(".page-container", { scrollTo: "#home" });
-      }
-    },
-    onClickProjects() {
-      if (this.$router.currentRoute.path != "/home") {
-        this.$router.push({ path: "/home", hash: "#projects" });
-      } else {
-        if (this.$route.hash != "#projects") {
-          this.$router.replace({ path: "/home", hash: "#projects" });
-        }
-        gsap.to(".page-container", { scrollTo: "#projects" });
+        gsap.to(".page-container", { scrollTo: `#${link}` });
       }
     },
   },
