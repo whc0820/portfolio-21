@@ -3,9 +3,7 @@
     <div class="section full-page light" id="section-1">
       <div class="project-title">{{ `Visitor Predictor` }}</div>
       <b-img-lazy
-        :src="
-          require('@/static/visitor-predictor/visitor_predictor_cover.png')
-        "
+        :src="require('@/static/visitor-predictor/visitor_predictor_cover.png')"
         center
       />
       <div class="vertical-bottom-left-text">January, 2020</div>
@@ -103,7 +101,7 @@
       />
       <div class="center-text">Click</div>
     </div>
-    <ProgressRing :percentage="this.percentage" />
+    <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
       :style="{
@@ -126,10 +124,11 @@ import EventBus from "../eventBus";
 
 const BCarousel = () =>
   import("bootstrap-vue").then((module) => module.BCarousel);
-const BImgLazy = () => 
+const BImgLazy = () =>
   import("bootstrap-vue").then((module) => module.BImgLazy);
-const ProgressRing = () =>
-  import(/* webpackPrefetch: true */ "@/components/ProgressRing.vue");
+
+const ProgressBar = () =>
+  import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 const MobileFrame = () =>
   import(/* webpackPrefetch: true */ "@/components/MobileFrame.vue");
 const CircularText = () =>
@@ -139,7 +138,7 @@ export default {
   components: {
     BCarousel,
     BImgLazy,
-    ProgressRing,
+    ProgressBar,
     CircularText,
     MobileFrame,
   },

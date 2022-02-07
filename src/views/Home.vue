@@ -37,6 +37,30 @@
         >
       </div>
     </div>
+    <div class="section dark" id="projects">
+      <div class="section-header">
+        <div class="section-logo"></div>
+        <span>Projects</span>
+      </div>
+      <div
+        v-for="(project, i) in this.projects"
+        :key="project + i"
+        @mouseenter="onEnterProject(project.path)"
+        @mouseleave="onLeaveProject(project.path)"
+        @click="onClickProject(project.path)"
+        class="table-row project-row"
+        :class="project.path ? 'pointer' : ''"
+      >
+        <div class="table-left">
+          <span>{{ project.name }}</span>
+          <span v-if="project.path" class="material-icons"> launch </span>
+        </div>
+        <div class="table-right">
+          <span>{{ project.desc }}</span>
+        </div>
+        <div v-if="i != projectsLength - 1" class="divider"></div>
+      </div>
+    </div>
     <div class="section dark" id="education">
       <div class="section-header">
         <div class="section-logo"></div>
@@ -104,30 +128,6 @@
         <div v-if="i != skillsLength - 1" class="divider" />
       </div>
     </div>
-    <div class="section dark" id="projects">
-      <div class="section-header">
-        <div class="section-logo"></div>
-        <span>Projects</span>
-      </div>
-      <div
-        v-for="(project, i) in this.projects"
-        :key="project + i"
-        @mouseenter="onEnterProject(project.path)"
-        @mouseleave="onLeaveProject(project.path)"
-        @click="onClickProject(project.path)"
-        class="table-row project-row"
-        :class="project.path ? 'pointer' : ''"
-      >
-        <div class="table-left">
-          <span>{{ project.name }}</span>
-          <span v-if="project.path" class="material-icons"> launch </span>
-        </div>
-        <div class="table-right">
-          <span>{{ project.desc }}</span>
-        </div>
-        <div v-if="i != projectsLength - 1" class="divider"></div>
-      </div>
-    </div>
     <div class="section dark" id="footer">
       <div class="table-row">
         <div class="table-left">
@@ -160,7 +160,7 @@
         </div>
       </div>
     </div>
-    <ProgressRing :percentage="this.percentage" />
+    <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
       :style="{
@@ -185,12 +185,12 @@ gsap.registerPlugin(ScrollToPlugin);
 
 import EventBus from "../eventBus";
 
-const ProgressRing = () =>
-  import(/* webpackPrefetch: true */ "@/components/ProgressRing.vue");
+const ProgressBar = () =>
+  import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 
 export default {
   components: {
-    ProgressRing,
+    ProgressBar,
   },
   data() {
     return {
@@ -233,9 +233,7 @@ export default {
           startTime: "September 2021",
           endTime: "February 2022",
           location: "Aviation Police Bureau, Taoyuan",
-          desc: [
-            "Duty service in the Administration Section.",
-          ],
+          desc: ["Duty service in the Administration Section."],
         },
         {
           name: "Teaching Assistant",

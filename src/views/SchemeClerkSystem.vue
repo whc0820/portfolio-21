@@ -124,7 +124,7 @@
       />
       <div class="center-text">Click</div>
     </div>
-    <ProgressRing :percentage="this.percentage" />
+    <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
       :style="{
@@ -150,10 +150,8 @@ const BCarousel = () =>
 const BImgLazy = () =>
   import("bootstrap-vue").then((module) => module.BImgLazy);
 
-const ProgressRing = () =>
-  import(/* webpackPrefetch: true */ "@/components/ProgressRing.vue");
-// const ThreeDImage = () =>
-//   import(/* webpackPrefetch: true */ "@/components/ThreeDImage.vue");
+const ProgressBar = () =>
+  import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 const MobileFrame = () =>
   import(/* webpackPrefetch: true */ "@/components/MobileFrame.vue");
 const CircularText = () =>
@@ -163,8 +161,7 @@ export default {
   components: {
     BCarousel,
     BImgLazy,
-    ProgressRing,
-    // ThreeDImage,
+    ProgressBar,
     CircularText,
     MobileFrame,
   },
