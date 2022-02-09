@@ -94,9 +94,9 @@ export default {
   left: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background-color: #ff0000;
+  background-color: rgba(255, 0, 0, 0.8);
   mix-blend-mode: difference;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
   pointer-events: none;
 }
@@ -108,7 +108,7 @@ export default {
   height: 16px;
   transform: translate(120px, 120px);
   border-radius: 50%;
-  background-color: #fff; 
+  background-color: #fff;
 }
 
 .icon-container {

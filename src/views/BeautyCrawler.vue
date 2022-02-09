@@ -3,23 +3,15 @@
     <div class="section full-page dark" id="section-1">
       <div class="project-title">{{ `Beauty Crawler` }}</div>
       <b-img-lazy
-        :src="
-          require('@/static/beauty-crawler/beauty_crawler_cover.png')
-        "
+        :src="require('@/static/beauty-crawler/beauty_crawler_cover.png')"
         center
       />
       <div class="vertical-bottom-left-text">November, 2018</div>
     </div>
-    <div class="section dark" id="section-2">
-      <div class="large-text">Beauty Crawler</div>
-      <div class="large-text">Crawler Beauty</div>
-      <div class="center-title">PTT Beauty</div>
-      <div class="vertical-bottom-left-text">Personal Project</div>
-    </div>
     <div class="section dark" id="section-3">
-      <div class="section-title-container">
-        <div class="section-title">Overview</div>
-        <div class="section-divider"></div>
+      <div class="section-title">
+        <span>01.</span>
+        <span>Overview</span>
       </div>
       <div
         class="image-slider"
@@ -42,15 +34,15 @@
       <div class="project-description">
         Beauty Crawler is a tool that crawls the images from the Taiwanese forum
         PTT Beauty community and relayout it with the web UI. We found out that
-        there are many shity or uncomfortable posts. To filter it, user can set
-        up specific keywords through the Line Bot, and the tool will only crawls
-        images from the relative posts.
+        there are many garbage posts. To filter it, user can set up specific
+        keywords through the Line Bot, and the tool will only crawls images from
+        the relative posts.
       </div>
     </div>
     <div class="section dark" id="section-4">
-      <div class="section-title-container">
-        <div class="section-title">Responsive Design</div>
-        <div class="section-divider"></div>
+      <div class="section-title">
+        <span>02.</span>
+        <span>Responsive Design</span>
       </div>
       <div v-if="this.$screen.width > 960" class="mobile-frame-wrapper">
         <MobileFrame
@@ -76,9 +68,8 @@
       </b-carousel>
     </div>
     <div class="section dark" id="section-5">
-      <div class="section-title-container">
-        <div class="section-title">Techs &amp; Tools</div>
-        <div class="section-divider"></div>
+      <div class="section-title">
+        <span>03.</span> <span>Techs &amp; Tools</span>
       </div>
       <div class="page-content-container">
         <span v-for="(tech, i) in this.techs" :key="tech + i">
@@ -87,9 +78,9 @@
       </div>
     </div>
     <div class="section full-page dark" id="section-6">
-      <div class="section-title-container">
-        <div class="section-title">Next Project</div>
-        <div class="section-divider"></div>
+      <div class="section-title">
+        <span>04.</span>
+        <span>Next Project</span>
       </div>
       <div class="vertical-bottom-left-text">Daily - Idiom</div>
       <CircularText
@@ -116,10 +107,6 @@
 </template>
 
 <script>
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
 import EventBus from "../eventBus";
 
 const BCarousel = () =>
@@ -156,77 +143,12 @@ export default {
         "JavaScript",
         "JQuery",
         "Line Bot",
-        "Node.js"
+        "Node.js",
       ],
     };
   },
   mounted() {
-    EventBus.$emit("cursor-active", "down", "scroll");
-
-    if (this.$screen.width > 576) {
-      const oddColumns = document.querySelectorAll(
-        ".three-d-image-column:nth-child(odd)"
-      );
-      const evenColumns = document.querySelectorAll(
-        ".three-d-image-column:nth-child(even)"
-      );
-      gsap.to(oddColumns, {
-        translateY: 100,
-        scrollTrigger: {
-          scroller: ".page-container",
-          trigger: "#section-1",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-      gsap.to(evenColumns, {
-        translateY: -100,
-        scrollTrigger: {
-          scroller: ".page-container",
-          trigger: "#section-1",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-    }
-
-    const largeText1 = document.querySelector(".large-text:nth-child(1)");
-    const largeText2 = document.querySelector(".large-text:nth-child(2)");
-    gsap.from(largeText1, {
-      x: -this.$screen.width,
-      scrollTrigger: {
-        scroller: ".page-container",
-        trigger: "#section-2",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-    gsap.to(largeText2, {
-      x: -this.$screen.width,
-      scrollTrigger: {
-        scroller: ".page-container",
-        trigger: "#section-2",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-
-    gsap.utils.toArray(".section-divider").forEach((divider) => {
-      gsap.from(divider, {
-        width: 0,
-        scrollTrigger: {
-          scroller: ".page-container",
-          trigger: divider,
-          start: "top bottom",
-          end: "top top",
-          scrub: 1,
-        },
-      });
-    });
+    EventBus.$emit("cursor-deactive");
   },
   methods: {
     onPageScroll(event) {
@@ -263,15 +185,6 @@ export default {
     },
   },
   computed: {
-    columnNumber() {
-      return 5;
-    },
-    threeDImageNumber() {
-      return 10;
-    },
-    threeDImageWidth() {
-      return 400;
-    },
     imageSliderWidth() {
       return this.$screen.width * 0.7;
     },
@@ -302,44 +215,16 @@ export default {
 
 .section {
   width: 100%;
-  height: auto;
   position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow: hidden;
 }
 
 #section-2 {
   flex-direction: column;
   justify-content: space-around;
-}
-
-.three-d-image-column-container {
-  width: 200%;
-  height: 210%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  overflow: hidden;
-  transform: translate(-50%, -50%) rotateX(45deg) rotateZ(-30deg);
-  box-sizing: border-box;
-}
-
-.three-d-image-column {
-  width: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  overflow-wrap: break-word;
-  overflow: hidden;
 }
 
 .project-title {
@@ -364,15 +249,6 @@ export default {
   justify-content: center;
   align-items: center;
   mix-blend-mode: difference;
-}
-
-.large-text {
-  font-size: 50vh;
-  font-weight: 500;
-  line-height: 50vh;
-  text-align: center;
-  white-space: nowrap;
-  text-transform: uppercase;
 }
 
 .center-title {
@@ -423,26 +299,32 @@ export default {
   line-height: 0.6em;
 }
 
-.section-title-container {
-  margin: 32px 112px 32px 32px;
-  padding: 16px 32px;
-  width: calc(100% - 144px);
-  height: 48px;
-  box-sizing: border-box;
-  mix-blend-mode: difference;
-  position: relative;
-}
-
 .section-title {
-  display: inline;
-  font-size: 2vh;
+  padding: 72px 32px 32px 32px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+}
+.section-title span {
+  display: flex;
+  align-items: flex-end;
   font-style: italic;
-  font-weight: 500;
-  line-height: 2vh;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  word-spacing: 0.8em;
-  color: #ffffff;
+}
+.section-title span:nth-child(1) {
+  margin: 0 16px 0 32px;
+  line-height: 16px;
+  font-size: 16px;
+  color: rgba(0, 255, 255, 0.9);
+}
+.section-title span:nth-child(2) {
+  line-height: 32px;
+  font-size: 32px;
+  font-weight: 500;
 }
 
 .page-content-container {
@@ -455,16 +337,6 @@ export default {
 
 .page-content-container span {
   margin: 8px 0;
-}
-
-.section-divider {
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background: #e8e8e8;
-  mix-blend-mode: difference;
 }
 
 .mobile-frame-wrapper {
@@ -529,20 +401,6 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.vertical-bottom-left-text {
-  position: absolute;
-  bottom: 48px;
-  left: 48px;
-  font-size: 2vh;
-  font-weight: 500;
-  font-style: italic;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  writing-mode: vertical-rl;
-  mix-blend-mode: difference;
-  color: #fff;
-}
-
 .center-text {
   margin: 48px 0;
   position: absolute;
@@ -559,15 +417,13 @@ export default {
 }
 
 .scroll-to-top-icon {
-  width: 50px;
-  height: 50px;
   position: fixed;
   bottom: 32px;
   right: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
   mix-blend-mode: difference;
   transition: 0.35s ease-in-out;
   cursor: pointer;
@@ -584,26 +440,24 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .section-title-container {
-    margin: 32px;
-    padding: 16px 32px;
-    width: calc(100% - 64px);
-  }
   .project-title {
     font-size: 72px;
   }
 }
 
 @media only screen and (max-width: 576px) {
+  .section-title span:nth-child(1) {
+    margin: 0 16px 0 0;
+  }
+  .section-title span:nth-child(2) {
+    font-size: 24px;
+    line-height: 24px;
+  }
   .project-title {
     font-size: 64px;
   }
   .project-description {
     padding: 32px 32px;
-  }
-  #section-4 {
-    height: 100%;
-    align-items: center;
   }
   .page-content-container {
     padding: 0 48px;

@@ -1,29 +1,14 @@
 <template>
   <div id="app">
-    <RightNavBar v-if="this.$screen.width >= 768" />
-    <span v-else class="material-icons nav-menu-icon" @click="onClickNavIcon()">
-      {{ this.isMobileNavActive ? "close" : "menu" }}
+    <div class="name">Jason Chen</div>
+    <span class="material-icons nav-menu-icon" @click="onClickNavIcon()">
+      {{ this.isNavActive ? "close" : "menu" }}
     </span>
     <CustomCursor v-if="this.$screen.width >= 768" />
     <vue-page-transition name="overlay-right">
       <router-view />
     </vue-page-transition>
-    <div class="mobile-nav" v-if="this.$screen.width < 768">
-      <span content-text="Home" @click="onClickLink('home')">Home</span>
-      <span content-text="About" @click="onClickLink('about')">About</span>
-      <span content-text="Education" @click="onClickLink('education')"
-        >Education</span
-      >
-      <span content-text="Experience" @click="onClickLink('experience')"
-        >Experience</span
-      >
-      <span content-text="Core Skills" @click="onClickLink('core-skills')"
-        >Core Skills</span
-      >
-      <span content-text="Projects" @click="onClickLink('projects')"
-        >Projects</span
-      >
-    </div>
+    <Navigator />
   </div>
 </template>
 
@@ -31,94 +16,65 @@
 import { gsap } from "gsap";
 
 import CustomCursor from "./components/CustomCursor.vue";
-const RightNavBar = () =>
-  import(/* webpackPrefetch: true */ "@/components/RightNavBar.vue");
+import Navigator from "./views/Navigator.vue";
+
+import eventBus from "./eventBus";
 
 export default {
   data() {
     return {
-      isMobileNavActive: false,
+      isNavActive: false,
     };
   },
   components: {
-    RightNavBar,
     CustomCursor,
+    Navigator,
+  },
+  mounted() {
+    eventBus.$on("route-change", (hash) => {
+      this.isNavActive = false;
+      const nav = document.querySelector(".nav");
+      gsap.to(nav, {
+        x: this.$screen.width,
+        duration: 0.35,
+        onComplete: () => {
+          if (this.$router.currentRoute.path != `/home`) {
+            this.$router.push({
+              path: `/home`,
+              hash: hash,
+            });
+          } else {
+            if (this.$route.hash != `#${hash}`) {
+              this.$router.replace({ path: `/home`, hash: hash });
+            }
+          }
+        },
+      });
+    });
+  },
+  beforeDestroy() {
+    eventBus.$off("route-change");
   },
   methods: {
     onClickNavIcon() {
-      this.isMobileNavActive = !this.isMobileNavActive;
-      const mobileNav = document.querySelector(".mobile-nav");
-      if (this.isMobileNavActive) {
+      this.isNavActive = !this.isNavActive;
+      const mobileNav = document.querySelector(".nav");
+      if (this.isNavActive) {
         gsap.to(mobileNav, { x: 0, duration: 0.35 });
       } else {
         gsap.to(mobileNav, { x: this.$screen.width, duration: 0.35 });
       }
-    },
-    onClickLink(name) {
-      if (name) {
-        const mobileNav = document.querySelector(".mobile-nav");
-        this.isMobileNavActive = false;
-        gsap.to(mobileNav, {
-          x: this.$screen.width,
-          duration: 0.35,
-          onComplete: () => {
-            if (this.$router.currentRoute.path != `/home`) {
-              this.$router.push({ path: `/home`, hash: `#${name}` });
-            } else {
-              if (this.$route.hash != `#${name}`) {
-                this.$router.replace({ path: "/home", hash: `#${name}` });
-              }
-              gsap.to(".page-container", { scrollTo: `#${name}` });
-            }
-          },
-        });
-      }
-    },
-    onClickHome() {
-      const mobileNav = document.querySelector(".mobile-nav");
-      this.isMobileNavActive = false;
-      gsap.to(mobileNav, {
-        x: this.$screen.width,
-        duration: 0.35,
-        onComplete: () => {
-          if (this.$router.currentRoute.path != "/home") {
-            this.$router.push({ path: "/home", hash: "#home" });
-          } else {
-            if (this.$route.hash != "#home") {
-              this.$router.replace({ path: "/home", hash: "#home" });
-            }
-            gsap.to(".page-container", { scrollTo: "#home" });
-          }
-        },
-      });
-    },
-    onClickProjects() {
-      const mobileNav = document.querySelector(".mobile-nav");
-      this.isMobileNavActive = false;
-      gsap.to(mobileNav, {
-        x: this.$screen.width,
-        duration: 0.35,
-        onComplete: () => {
-          if (this.$router.currentRoute.path != "/home") {
-            this.$router.push({ path: "/home", hash: "#projects" });
-          } else {
-            if (this.$route.hash != "#projects") {
-              this.$router.replace({ path: "/home", hash: "#projects" });
-            }
-            gsap.to(".page-container", { scrollTo: "#projects" });
-          }
-        },
-      });
     },
   },
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap");
+
 * {
   user-select: none;
   box-sizing: border-box;
-  /* cursor: none; */
 }
 
 img {
@@ -133,17 +89,31 @@ body {
 }
 
 .light {
-  background: #ffffff;
-  color: #000000;
+  background: #f8f8f8;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .dark {
   background: #000000;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .full-page {
   min-height: 100%;
+}
+
+.vertical-bottom-left-text {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  font-size: 2vh;
+  font-weight: 500;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+  mix-blend-mode: difference;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #app {
@@ -157,6 +127,18 @@ body {
   overflow: hidden;
 }
 
+.name {
+  position: fixed;
+  top: 32px;
+  left: 32px;
+  color: #fff;
+  font-size: 24px;
+  font-family: "Source Code Pro", monospace;
+  letter-spacing: 0.2em;
+  mix-blend-mode: difference;
+  z-index: 3;
+}
+
 .page-container {
   margin: 0;
   width: 100%;
@@ -166,59 +148,16 @@ body {
 }
 
 .nav-menu-icon {
-  margin: 9px;
   position: fixed;
   top: 32px;
   right: 32px;
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   mix-blend-mode: difference;
   transition: 0.35s;
 }
 .nav-menu-icon:hover {
-  color: #0ff;
-}
-
-.mobile-nav {
-  padding: 64px 16px;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000000;
-  transform: translateX(100%);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.mobile-nav span {
-  margin: 16px 0;
-  position: relative;
-  color: #ffffff;
-  font-size: 64px;
-  font-style: italic;
-  line-height: 64px;
-  cursor: pointer;
-}
-.mobile-nav span::before {
-  content: attr(content-text);
-  width: 0%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #0ff;
-  transition: 0.35s;
-  text-overflow: clip;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.mobile-nav span:hover::before {
-  width: 100%;
+  color: rgba(0, 255, 255, 0.9);
 }
 </style>

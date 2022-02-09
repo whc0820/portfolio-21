@@ -1,45 +1,49 @@
 <template>
   <div class="page-container dark" @scroll="onPageScroll">
-    <div class="section full-page dark" id="home">
+    <div class="section dark" id="home">
       <div class="home-title">
-        <span>PF21</span>
-      </div>
-      <div class="home-desc">
-        <span>scroll down to check for more details &#8595;</span>
-      </div>
-      <div class="vertical-bottom-left">
-        <span>Jason Chen</span>
+        <span>Hi, my name is</span>
+        <span>Jason Chen.</span>
+        <span>I make WEB and APP stuffs.</span>
+        <span
+          >I'm a front-end developer looking to further improve my skills and
+          techniques.</span
+        >
       </div>
     </div>
     <div class="section dark" id="about">
       <div class="section-header">
-        <div class="section-logo"></div>
+        <span>01.</span>
         <span>About</span>
       </div>
       <div class="about-content">
-        <span>Greetings, great to see you here!!</span>
-        <span>My name is Jason Chen, born in 1997, from Hsinchu, Taiwan.</span>
-        <span>I majored in the Computer Science and Engineering.</span>
-        <span>I like making WEB, mobile APP, frontend stuffs...</span>
-        <span>I am looking for a job to ehance my frontend techniques:</span>
-        <span class="about-small-text"
-          >&#8208; security things like router guards, tokens, etc.</span
-        >
-        <span class="about-small-text"
-          >&#8208; utilization for smaller chunk, faster loading speed, less
-          resource usage</span
-        >
-        <span class="about-small-text"
-          >&#8208; experiene of project participation and development</span
-        >
-        <span class="about-small-text"
-          >&#8208; super coooool animation effects!!</span
-        >
+        <p>
+          Hello! My name is Jason and I enjoy creating websites and mobile
+          applications. My interest in front-end development started back when I
+          was a college student, I participated in "WEB Desgin" course and I've
+          learned a lot about HTML &amp; CSS, since then I fell in love with
+          making user interface and
+          <span class="highlight-text">super cooool animations</span>
+          !
+        </p>
+        <p>
+          Recently, I'm learning some framework in order to boost the
+          performance and efficiency of the development task, and I'm also focus
+          on the security mechanisms, better resource management, utilization
+          for smaller project size and faster loading speed.
+        </p>
+        <p>
+          Outside of my professional and coding lives, I love watching anime and
+          I'm also a electric guitarist loves playing rocks and covering anime
+          music! I'm often too enthusiastic about doing something, that I've
+          accidentally ruptured my tendors while playing the electric guitar
+          once.
+        </p>
       </div>
     </div>
     <div class="section dark" id="projects">
       <div class="section-header">
-        <div class="section-logo"></div>
+        <span>02.</span>
         <span>Projects</span>
       </div>
       <div
@@ -61,35 +65,9 @@
         <div v-if="i != projectsLength - 1" class="divider"></div>
       </div>
     </div>
-    <div class="section dark" id="education">
-      <div class="section-header">
-        <div class="section-logo"></div>
-        <span>Education</span>
-      </div>
-      <div class="vertical-line"></div>
-      <div
-        v-for="(education, i) in this.educations"
-        :key="education + i"
-        :class="i % 2 == 0 ? 'exp-row-reverse' : 'exp-row'"
-      >
-        <div :class="i % 2 == 0 ? 'exp-row-left-reverse' : 'exp-row-left'">
-          {{ education.startTime }} &mdash; {{ education.endTime }}
-        </div>
-        <div :class="i % 2 == 0 ? 'exp-row-right-reverse' : 'exp-row-right'">
-          <div class="exp-title">{{ education.name }}</div>
-          <div class="exp-location">{{ education.location }}</div>
-          <div class="exp-desc">
-            <span v-for="(desc, j) in education.desc" :key="desc + j">
-              &#8208; {{ desc }}
-            </span>
-          </div>
-        </div>
-        <div class="exp-row-circle"></div>
-      </div>
-    </div>
     <div class="section dark" id="experience">
       <div class="section-header">
-        <div class="section-logo"></div>
+        <span>03.</span>
         <span>Experience</span>
       </div>
       <div class="vertical-line" />
@@ -98,68 +76,72 @@
         :key="experience + i"
         :class="i % 2 != 0 ? 'exp-row-reverse' : 'exp-row'"
       >
-        <div :class="i % 2 != 0 ? 'exp-row-left-reverse' : 'exp-row-left'">
-          {{ experience.startTime }} &mdash; {{ experience.endTime }}
+        <div
+          class="exp-content"
+          :class="i % 2 != 0 ? 'exp-row-left-reverse' : 'exp-row-left'"
+        >
+          <span
+            v-for="(desc, j) in experience.desc"
+            :key="desc + j"
+            class="exp-desc"
+          >
+            &#8208; {{ desc }}
+          </span>
         </div>
         <div :class="i % 2 != 0 ? 'exp-row-right-reverse' : 'exp-row-right'">
-          <div class="exp-title">{{ experience.name }}</div>
-          <div class="exp-location">{{ experience.location }}</div>
-          <div class="exp-desc">
-            <span v-for="(desc, j) in experience.desc" :key="desc + j">
-              &#8208; {{ desc }}
-            </span>
+          <div class="exp-title">{{ experience.organization }}</div>
+          <div class="exp-location">
+            {{ experience.location }}
+            <span :style="{ color: '#fff' }">&#9474;</span>
+            {{ experience.startTime }} &mdash;
+            {{ experience.endTime }}
+          </div>
+          <div class="exp-name">
+            {{ experience.name }}
           </div>
         </div>
         <div class="exp-row-circle"></div>
       </div>
     </div>
-    <div class="section dark" id="core-skills">
+    <div class="section dark" id="contact">
       <div class="section-header">
-        <div class="section-logo"></div>
-        <span>Core Skills</span>
+        <span>04.</span>
+        <span>Let's work together</span>
       </div>
-      <div v-for="(skill, i) in this.skills" :key="skill + i" class="table-row">
-        <div class="table-left">{{ skill.name }}</div>
-        <div class="table-right">
-          <span v-for="(s, j) in skill.desc" :key="s + j">
-            &#8208; {{ s }}
-          </span>
-        </div>
-        <div v-if="i != skillsLength - 1" class="divider" />
+      <div class="contact-content">
+        <p>
+          I'm currently looking for fulltime and contract opportunities.<br />
+          If you're interested, don't be hesitate to contact me. <br />
+          Please reach out to me at
+          <a href="mailto:jasonwhc0820@gmail.com">jasonwhc0820@gmail.com</a>,
+          let's talk!
+        </p>
       </div>
     </div>
     <div class="section dark" id="footer">
-      <div class="table-row">
-        <div class="table-left">
-          <div class="footer-cols">
-            <div class="footer-col">
-              <span class="footer-col-title">Links</span>
-              <span class="footer-col-item" @click="onClickLink('about')"
-                >About</span
-              >
-              <span class="footer-col-item" @click="onClickLink('education')"
-                >Education</span
-              >
-              <span class="footer-col-item" @click="onClickLink('experience')"
-                >Experience</span
-              >
-              <span class="footer-col-item" @click="onClickLink('core-skills')"
-                >Core Skills</span
-              >
-              <span class="footer-col-item" @click="onClickLink('projects')"
-                >Projects</span
-              >
-            </div>
-          </div>
+      <div class="footer-content">
+        <div class="footer-col">
+          <span>Jason Chen</span>
+          <span>Front-End Development</span>
         </div>
-        <div class="table-right">
-          <div class="footer-logo">
-            <span>PF21</span>
-          </div>
-          <span>jasonwhc0820@gmail.com</span>
+        <div class="footer-col">
+          <span>Contact</span>
+          <span
+            ><a href="mailto:jasonwhc0820@gmail.com"
+              >jasonwhc0820@gmail.com</a
+            ></span
+          >
+        </div>
+        <div class="footer-col">
+          <span>
+            <a target="_blank" href="https://github.com/whc0820"
+              ><b-icon icon="github"></b-icon
+            ></a>
+          </span>
         </div>
       </div>
     </div>
+
     <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
@@ -183,6 +165,8 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollToPlugin);
 
+import { BIcon } from "bootstrap-vue";
+
 import EventBus from "../eventBus";
 
 const ProgressBar = () =>
@@ -191,6 +175,7 @@ const ProgressBar = () =>
 export default {
   components: {
     ProgressBar,
+    BIcon,
   },
   data() {
     return {
@@ -230,16 +215,18 @@ export default {
       experiences: [
         {
           name: "Substitute Military Service",
-          startTime: "September 2021",
-          endTime: "February 2022",
-          location: "Aviation Police Bureau, Taoyuan",
+          organization: "Aviation Police Bureau",
+          startTime: "Sep. 2021",
+          endTime: "Feb. 2022",
+          location: "Taoyuan, Taiwan",
           desc: ["Duty service in the Administration Section."],
         },
         {
           name: "Teaching Assistant",
-          startTime: "September 2019",
-          endTime: "August 2021",
-          location: "Yuan Ze University, Taoyuan",
+          organization: "Yuan Ze University",
+          startTime: "Sep. 2019",
+          endTime: "Aug. 2021",
+          location: "Taoyuan, Taiwan",
           desc: [
             "Maitain and develope course used website for collecting learning data of students which written in ASP.NET and SSMS.",
             'Tutor of the "Basic Programming" and "Windows Form Programming" course.',
@@ -247,16 +234,18 @@ export default {
         },
         {
           name: "Part-Time",
-          startTime: "July 2019",
-          endTime: "August 2019",
-          location: "Ardomus Networks Corporation, Hsinchu",
+          organization: "Ardomus Networks Corporation",
+          startTime: "Jul. 2019",
+          endTime: "Aug. 2019",
+          location: "Hsinchu, Taiwan",
           desc: ["WEB development in Angular."],
         },
         {
           name: "Intern",
-          startTime: "January 2018",
-          endTime: "January 2019",
-          location: "Ardomus Networks Corporation, Hsinchu",
+          organization: "Ardomus Networks Corporation",
+          startTime: "Jan. 2018",
+          endTime: "Jan. 2019",
+          location: "Hsinchu, Taiwan",
           desc: [
             "Mobile APP development in native Android.",
             "WEB development in Angular.",
@@ -265,9 +254,10 @@ export default {
         },
         {
           name: "Teaching Assistant",
-          startTime: "January 2018",
-          endTime: "January 2019",
-          location: "Trend Education, Taipei",
+          organization: "Trend Education",
+          startTime: "Jan. 2018",
+          endTime: "Jan. 2019",
+          location: "Taipei, Taiwan",
           desc: [
             "After school tutor of the high school and middle school students in Mathematics.",
           ],
@@ -360,26 +350,14 @@ export default {
     };
   },
   mounted() {
-    this.observeSections();
+    // this.observeSections();
 
     if (this.$route.hash) {
       const pageContainer = document.querySelector(".page-container");
       gsap.to(pageContainer, { scrollTo: `${this.$route.hash}` });
     }
 
-    EventBus.$emit("cursor-active", "down", "scroll");
-
-    ScrollTrigger.batch(".about-content span", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          x: 100,
-          opacity: 0,
-          color: "#0ff",
-          duration: 0.5,
-        }),
-    });
+    EventBus.$emit("cursor-deactive");
 
     ScrollTrigger.batch(".vertical-line", {
       scroller: ".page-container",
@@ -391,42 +369,17 @@ export default {
         }),
     });
 
-    ScrollTrigger.batch(".exp-title", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          x: 100,
-          opacity: 0,
-          color: "#0ff",
-          duration: 0.5,
-        }),
-    });
-
-    ScrollTrigger.batch(".exp-location", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          x: 100,
-          opacity: 0,
-          color: "#0ff",
-          duration: 0.5,
-          delay: 0.1,
-        }),
-    });
-
-    ScrollTrigger.batch(".exp-desc", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          x: 100,
-          opacity: 0,
-          duration: 0.5,
-          delay: 0.2,
-        }),
-    });
+    // ScrollTrigger.batch(".exp-desc", {
+    //   scroller: ".page-container",
+    //   start: "top bottom",
+    //   onEnter: (batch) =>
+    //     gsap.from(batch, {
+    //       x: 100,
+    //       opacity: 0,
+    //       color: "#0ff",
+    //       duration: 0.5,
+    //     }),
+    // });
 
     if (this.$screen.width > 576) {
       ScrollTrigger.batch(".exp-row-circle", {
@@ -440,27 +393,21 @@ export default {
       });
     }
 
-    ScrollTrigger.batch(".table-right span", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          x: 100,
-          opacity: 0,
-          color: "#0ff",
-        }),
-    });
-
-    ScrollTrigger.batch(".section-logo", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) => {
-        gsap.from(batch, {
-          scale: 0,
-          duration: 0.35,
-        });
-      },
-    });
+    // ScrollTrigger.batch(".table-right span", {
+    //   scroller: ".page-container",
+    //   start: "top bottom",
+    //   onEnter: (batch) =>
+    //     gsap.from(batch, {
+    //       x: 100,
+    //       opacity: 0,
+    //       color: "#0ff",
+    //     }),
+    // });
+  },
+  watch: {
+    $route(to) {
+      gsap.to(".page-container", { scrollTo: to.hash });
+    },
   },
   methods: {
     onPageScroll(event) {
@@ -525,11 +472,7 @@ export default {
     },
     onLeaveProject(path) {
       if (path) {
-        if (this.scrolledToBottomPage) {
-          EventBus.$emit("cursor-deactive");
-        } else {
-          EventBus.$emit("cursor-active", "down", "Scroll");
-        }
+        EventBus.$emit("cursor-deactive");
       }
     },
     onClickProject(path) {
@@ -562,6 +505,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap");
+
 *::-webkit-scrollbar {
   display: none;
 }
@@ -585,29 +530,36 @@ export default {
 }
 
 .home-title {
-  margin: 32px;
-  width: 360px;
-  height: 360px;
+  padding: 160px 0 32px 0;
+  width: calc(100% - 256px);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent 0px,
-    transparent 10px,
-    #0ff 10px,
-    #0ff 12px
-  );
-  background-attachment: fixed;
-  cursor: default;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.home-title span {
-  font-size: 120px;
-  line-height: 120px;
+.home-title span:nth-child(1) {
+  line-height: 64px;
+  font-size: 16px;
+  font-style: italic;
+  color: #0ff;
+  word-spacing: 0.5em;
+}
+.home-title span:nth-child(2) {
+  line-height: 64px;
+  font-size: 64px;
+  font-family: "Source Code Pro", monospace;
+  color: rgba(255, 255, 255, 0.9);
+}
+.home-title span:nth-child(3) {
+  font-size: 64px;
   font-weight: 500;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+}
+.home-title span:nth-child(4) {
+  margin: 16px 0 0 0;
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .home-desc {
@@ -618,20 +570,6 @@ export default {
   font-size: 2vh;
   letter-spacing: 0.2em;
   text-align: center;
-}
-
-.vertical-bottom-left {
-  position: absolute;
-  left: 48px;
-  bottom: 48px;
-}
-
-.vertical-bottom-left span {
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  writing-mode: vertical-lr;
 }
 
 .divider {
@@ -645,16 +583,21 @@ export default {
 }
 
 .about-content {
-  margin: 0 128px;
+  margin: 0 128px 0 128px;
   width: calc(100% - 256px);
   display: inline-flex;
   flex-direction: column;
-  font-size: 24px;
-  font-style: italic;
 }
-.about-small-text {
-  margin: 8px 0 0 48px;
-  font-size: 20px;
+
+.about-content p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.highlight-text {
+  font-weight: 500;
+  color: rgba(0, 255, 255, 0.9);
 }
 
 .section:nth-child(2),
@@ -704,10 +647,11 @@ export default {
 
 .exp-title {
   font-size: 32px;
-  font-style: italic;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
 }
 .exp-row-right-reverse .exp-title,
-.exp-row-right-reverse .exp-desc,
+.exp-row-right-reverse .exp-name,
 .exp-row-right-reverse .exp-location {
   align-self: flex-end;
   align-items: flex-end;
@@ -717,17 +661,38 @@ export default {
   text-align: left;
 }
 
-.exp-desc {
+.exp-name {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  font-style: italic;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .exp-location {
-  margin: 0 0 16px 0;
+  margin: 0 0 8px 0;
   font-size: 14px;
-  font-style: italic;
+  color: rgba(0, 255, 255, 0.9);
+}
+
+.exp-desc {
+  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+.exp-row-left .exp-desc,
+.exp-row-right-reverse .exp-desc {
+  text-align: right;
+}
+.exp-row-right .exp-desc,
+.exp-row-left-reverse .exp-desc {
+  text-align: left;
+}
+
+.exp-content {
+  padding: 16px 32px;
+  background: rgba(0, 255, 255, 0.15);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .exp-row-circle {
@@ -738,42 +703,53 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   background: #000;
-  border: 2px solid #00ffff;
+  border: 2px solid #fff;
   border-radius: 50%;
+  box-sizing: border-box;
+}
+.exp-row-circle::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  border: 1px solid #0ff;
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .section-header {
-  padding: 32px;
+  padding: 72px 32px 32px 32px;
   position: sticky;
   top: 0;
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 1;
 }
 
 .section-header span {
-  font-size: 32px;
   font-weight: 500;
   font-style: italic;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
 }
 
-.section-logo {
-  margin-right: 16px;
-  width: 24px;
-  height: 24px;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent 0px,
-    transparent 5px,
-    #0ff 5px,
-    #0ff 6px
-  );
+.section-header span:nth-child(1) {
+  margin: 0 16px 0 32px;
+  font-size: 16px;
+  line-height: 16px;
+  color: rgba(0, 255, 255, 0.9);
+}
+
+.section-header span:nth-child(2) {
+  font-size: 32px;
+  line-height: 32px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .table-row {
@@ -816,18 +792,20 @@ export default {
 }
 
 .scroll-to-top-icon {
-  width: 50px;
-  height: 50px;
   position: fixed;
   bottom: 32px;
   right: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgba(255, 255, 255, 0.9);
   mix-blend-mode: difference;
   transition: 0.35s ease-in-out;
   cursor: pointer;
   z-index: 2;
+}
+.scroll-to-top-icon:hover {
+  color: rgba(0, 255, 255, 0.9);
 }
 
 .vertical-line {
@@ -840,104 +818,97 @@ export default {
   background: #1f1f1f;
 }
 
+#contact {
+  display: flex;
+  justify-content: center;
+}
+.contact-content {
+  margin: 0 0 0 128px;
+  padding: 0 0 64px 0;
+  width: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.contact-content p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.contact-content a {
+  font-weight: 500;
+  text-decoration: underline;
+  color: rgba(0, 255, 255, 0.9);
+  cursor: pointer;
+}
+
 #footer {
-  padding: 64px 0 0 0;
-  margin: 16px 0 0 0;
+  padding: 48px 128px 32px 128px;
   height: auto;
   display: inline-flex;
   flex-direction: row;
   background: #1f1f1f;
 }
-#footer .table-left {
-  max-height: none;
-}
-#footer .table-right {
-  max-height: none;
-  align-items: flex-end;
-}
-#footer .table-right span {
-  text-align: right;
-}
-
-.footer-logo {
-  margin: 0 0 16px 0;
-  width: 176px;
-  height: 176px;
+.footer-content {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent 0px,
-    transparent 10px,
-    #0ff 10px,
-    #0ff 12px
-  );
-}
-.footer-logo span {
-  font-size: 48px;
-  line-height: 48px;
-  text-align: center;
-  color: #fff;
-}
-
-.footer-cols {
-  display: inline-flex;
   flex-direction: row;
-  justify-content: flex-end;
 }
 .footer-col {
-  display: inline-flex;
+  width: 33.33%;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 }
-.footer-col-title {
-  margin: 0 0 16px 0;
-  font-size: 16px;
-  line-height: 16px;
+.footer-col span {
+  margin: 4px 0;
+}
+.footer-col span:nth-child(1) {
+  font-size: 24px;
   font-weight: 500;
-  text-transform: uppercase;
 }
-.footer-col-item {
-  margin: 8px 0;
-  position: relative;
-  font-size: 16px;
-  text-transform: uppercase;
+.footer-col span a {
+  font-weight: 500;
+  text-decoration: underline;
+  color: rgba(255, 255, 255, 0.9);
   transition: 0.35s;
   cursor: pointer;
 }
-.footer-col-item::before {
-  content: "";
-  width: 0;
-  height: 1px;
-  position: absolute;
-  bottom: -1px;
-  left: -8px;
-  transition: 0.35s ease-in-out;
-  border-bottom: 1px solid #0ff;
-}
-.footer-col-item:hover::before {
-  width: calc(100% + 16px);
+.footer-col span a:hover {
+  color: rgba(0, 255, 255, 0.9);
 }
 
 @media only screen and (max-width: 768px) {
   .home-title {
-    width: 256px;
-    height: 256px;
-  }
-  .home-title span {
-    font-size: 12vh;
+    width: calc(100% - 128px);
   }
 
   .exp-title {
     font-size: 24px;
   }
 
+  .about-content {
+    margin: 0 64px;
+    width: calc(100% - 128px);
+  }
+
+  .contact-content {
+    margin: 0 64px;
+    width: calc(100% - 128px);
+  }
+
+  #footer {
+    padding: 16px 64px;
+  }
+  .footer-content {
+    flex-direction: column;
+  }
+  .footer-col {
+    margin: 8px 0;
+  }
+
   .exp-row,
   .exp-row-reverse {
-    margin: 0 32px 64px 32px;
-    width: calc(100% - 64px);
+    margin: 0 64px 64px 64px;
+    width: calc(100% - 128px);
   }
   .exp-row-left,
   .exp-row-right-reverse {
@@ -951,23 +922,28 @@ export default {
   }
 
   .table-row {
-    margin: 0 32px;
+    margin: 0 64px;
     padding: 32px 0;
-    width: calc(100% - 64px);
+    width: calc(100% - 128px);
   }
   .table-right {
     padding: 0 0 0 32px;
   }
-
-  .vertical-bottom-left {
-    left: 32px;
-    bottom: 32px;
-  }
 }
 
 @media only screen and (max-width: 576px) {
-  .section-header span {
+  .home-title {
+    margin: 0 32px;
+    width: calc(100% - 64px);
+  }
+
+  .section-header {
+    padding: 72px 0 32px 0;
+  }
+
+  .section-header span:nth-child(2) {
     font-size: 24px;
+    line-height: 24px;
   }
 
   .home-desc {
@@ -979,33 +955,43 @@ export default {
     width: calc(100% - 64px);
     font-size: 20px;
   }
-  .about-small-text {
-    margin: 8px 0 0 32px;
-    font-size: 16px;
+
+  .table-row {
+    margin: 0 32px;
+    width: calc(100% - 64px);
   }
 
   .exp-row,
   .exp-row-reverse {
     margin: 0 0 0 16px;
     padding: 32px 16px;
-    flex-direction: column;
+    width: 100%;
+    flex-direction: column-reverse;
     border-bottom: 1px solid #171717;
+  }
+
+  .exp-content {
+    padding: 16px;
   }
 
   .exp-row-left,
   .exp-row-right-reverse,
   .exp-row-right,
   .exp-row-left-reverse {
-    margin: 0;
-    width: 100%;
+    margin: 8px 0;
+    width: calc(100% - 32px);
     align-items: flex-start;
   }
 
   .exp-row-right-reverse .exp-title,
-  .exp-row-right-reverse .exp-desc,
+  .exp-row-right-reverse .exp-name,
   .exp-row-right-reverse .exp-location {
     align-self: flex-start;
     align-items: flex-start;
+    text-align: left;
+  }
+
+  .exp-row-left .exp-desc {
     text-align: left;
   }
 
@@ -1030,12 +1016,17 @@ export default {
     max-width: 112px;
   }
 
-  .footer-logo {
-    width: 128px;
-    height: 128px;
+  .contact-content {
+    margin: 0 32px;
+    width: calc(100% - 64px);
   }
-  .footer-logo span {
-    font-size: 32px;
+
+  #footer {
+    padding: 32px;
+  }
+
+  .footer-col {
+    width: 100%;
   }
 }
 </style>

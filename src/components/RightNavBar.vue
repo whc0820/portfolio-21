@@ -1,6 +1,7 @@
 <template>
   <div class="right-nav-bar">
     <div class="nav-item" @click="onClickLink('home')">Home</div>
+    <div class="nav-item" @click="onClickLink('about')">About</div>
     <div class="nav-item" @click="onClickLink('projects')">Projects</div>
     <div class="nav-item" @click="onClickLink('experience')">Experience</div>
   </div>
@@ -17,9 +18,9 @@ export default {
       if (this.$router.currentRoute.path != "/home") {
         this.$router.push({ path: "/home", hash: `#${link}` });
       } else {
-        if (this.$route.hash != `#${link}`) {
-          this.$router.replace({ path: "/home", hash: `#${link}` });
-        }
+        // if (this.$route.hash != `#${link}`) {
+        //   this.$router.replace({ path: "/home", hash: `#${link}` });
+        // }
         gsap.to(".page-container", { scrollTo: `#${link}` });
       }
     },
@@ -44,10 +45,10 @@ export default {
 
 .nav-item {
   margin: 32px 16px;
-  padding: 16px;
-  max-width: 2vh;
+  padding: 8px;
   position: relative;
   color: #ffffff;
+  line-height: 2vh;
   font-size: 2vh;
   font-weight: 500;
   font-style: italic;
@@ -66,7 +67,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  border-left: 1px solid #ffffff;
+  border-left: 1px solid #0ff;
   transition: 0.5s ease-in-out;
 }
 
