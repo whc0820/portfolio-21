@@ -1,100 +1,102 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
     <div class="section full-page dark" id="section-1">
-      <b-img-lazy
-        :width="this.$screen.width"
-        :height="this.$screen.height"
-        :src="require(`@/static/led-visualizer/led_visualizer_cover.jpg`)"
-      />
-      <div class="project-title">{{ `LED Visualizer` }}</div>
-      <div class="vertical-bottom-left-text">March, 2019</div>
+      <div class="section-max-width">
+        <b-img-lazy
+          :src="require('@/static/led-visualizer/led_visualizer_cover.jpg')"
+          :fluid="this.$screen.width > 768 ? true : false"
+        />
+        <div class="project-title">
+          <span>LED</span>
+          <span>Visualizer</span>
+        </div>
+      </div>
+    </div>
+    <div class="section dark" id="section-2">
+      <div class="section-max-width">
+        <div class="section-header">
+          <span>01.</span>
+          <span>Overview</span>
+        </div>
+        <div class="image-slider">
+          <b-carousel :interval="2000" :no-hover-pause="true">
+            <b-carousel-slide
+              v-for="j in 6"
+              :key="`slider-1-${j}`"
+              :img-src="
+                require(`@/static/led-visualizer/led_visualizer_image${j}.png`)
+              "
+            >
+            </b-carousel-slide>
+          </b-carousel>
+        </div>
+        <div class="project-description">
+          LED Visualizer is a project that user can customize the LED strip's
+          color or lighting mode through the web or mobile UI. The controller is
+          based on the arduino D1 which subscribes to the MQTT events to receive
+          frontend's request and toggle the LED strip. One of the features is
+          the music mode, we installed a voice detector on the D1 board that the
+          LEDs can interact with the melody, which makes the music visulaize.
+        </div>
+      </div>
     </div>
     <div class="section dark" id="section-3">
-      <div class="section-title">
-        <span>01.</span>
-        <span>Overview</span>
-      </div>
-      <div
-        class="image-slider"
-        :style="{
-          width: `${imageSliderWidth}px`,
-          height: `${imageSliderHeight}px`,
-        }"
-      >
-        <b-carousel :interval="2000" :no-hover-pause="true">
+      <div class="section-max-width">
+        <div class="section-header">
+          <span>02.</span>
+          <span>Responsive Design</span>
+        </div>
+        <div v-if="this.$screen.width > 960" class="mobile-frame-wrapper">
+          <MobileFrame
+            v-for="i in 4"
+            :key="`mobile-frame-${i}`"
+            :imageWidth="180"
+            :imageHeight="380"
+            :imageName="`led-visualizer/mobile/led_visualizer_mobile_image${i}.png`"
+            :dark="true"
+          />
+        </div>
+        <b-carousel v-else :interval="2000" class="mobile-frame-slider">
+          <div class="camera">
+            <div class="circle"></div>
+          </div>
           <b-carousel-slide
-            v-for="j in 6"
-            :key="`slider-1-${j}`"
+            v-for="i in 4"
+            :key="`mobile-frame-${i}`"
             :img-src="
-              require(`@/static/led-visualizer/led_visualizer_image${j}.png`)
+              require(`@/static/led-visualizer/mobile/led_visualizer_mobile_image${i}.png`)
             "
-          >
-          </b-carousel-slide>
+          />
         </b-carousel>
-      </div>
-      <div class="project-description">
-        LED Visualizer is a project that user can customize the LED strip's
-        color or lighting mode through the web or mobile UI. The controller is
-        based on the arduino D1 which subscribes to the MQTT events to receive
-        frontend's request and toggle the LED strip. One of the features is the
-        music mode, we installed a voice detector on the D1 board that the LEDs
-        can interact with the melody, which makes the music visulaize.
       </div>
     </div>
     <div class="section dark" id="section-4">
-      <div class="section-title">
-        <span>02.</span>
-        <span>Responsive Design</span>
-      </div>
-      <div v-if="this.$screen.width > 960" class="mobile-frame-wrapper">
-        <MobileFrame
-          v-for="i in 4"
-          :key="`mobile-frame-${i}`"
-          :imageWidth="180"
-          :imageHeight="380"
-          :imageName="`led-visualizer/mobile/led_visualizer_mobile_image${i}.png`"
-          :dark="true"
-        />
-      </div>
-      <b-carousel v-else :interval="2000" class="mobile-frame-slider">
-        <div class="camera">
-          <div class="circle"></div>
+      <div class="section-max-width">
+        <div class="section-header">
+          <span>03.</span>
+          <span>Techs &amp; Tools</span>
         </div>
-        <b-carousel-slide
-          v-for="i in 4"
-          :key="`mobile-frame-${i}`"
-          :img-src="
-            require(`@/static/led-visualizer/mobile/led_visualizer_mobile_image${i}.png`)
-          "
-        />
-      </b-carousel>
+        <div class="page-content-container">
+          <span v-for="(tech, i) in this.techs" :key="tech + i">
+            &#8208; {{ tech }}
+          </span>
+        </div>
+      </div>
     </div>
     <div class="section dark" id="section-5">
-      <div class="section-title">
-        <span>03.</span>
-        <span>Techs &amp; Tools</span>
-      </div>
-      <div class="page-content-container">
-        <span v-for="(tech, i) in this.techs" :key="tech + i">
-          &#8208; {{ tech }}
-        </span>
+      <div class="section-max-width">
+        <div class="section-header">
+          <span>04.</span>
+          <span>Next Project</span>
+        </div>
+        <div class="page-content-container">
+          <span class="next-project-title" @click="onClickNextProject()"
+            >&#8594; Beauty Crawler</span
+          >
+        </div>
       </div>
     </div>
-    <div class="section full-page dark" id="section-6">
-      <div class="section-title">
-        <span>04.</span>
-        <span>Next Project</span>
-      </div>
-      <div class="vertical-bottom-left-text">Beauty - Crawler</div>
-      <CircularText
-        id="circular-text"
-        title="beauty-crawler-beauty-crawler-"
-        @mouseenter.native="onEnterNextProject()"
-        @mouseleave.native="onLeaveNextProject()"
-        @click.native="onClickNextProject()"
-      />
-      <div class="center-text">Click</div>
-    </div>
+    <Footer />
     <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
@@ -123,16 +125,16 @@ const ProgressBar = () =>
   import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 const MobileFrame = () =>
   import(/* webpackPrefetch: true */ "@/components/MobileFrame.vue");
-const CircularText = () =>
-  import(/* webpackPrefetch: true */ "@/components/CircularText.vue");
+const Footer = () =>
+  import(/* webpackPrefetch: true */ "@/components/Footer.vue");
 
 export default {
   components: {
     BCarousel,
     BImgLazy,
     ProgressBar,
-    CircularText,
     MobileFrame,
+    Footer
   },
   data() {
     return {
@@ -151,24 +153,12 @@ export default {
       ],
     };
   },
-  mounted() {
-    EventBus.$emit("cursor-deactive");
-  },
   methods: {
     onPageScroll(event) {
       let scrollTop = event.srcElement.scrollTop;
       this.percentage =
         (scrollTop / (event.srcElement.scrollHeight - this.$screen.height)) *
         100;
-
-      if (
-        this.percentage >= 95 &&
-        !this.scrolledToBottomPage &&
-        !this.isEnteringNextProject
-      ) {
-        this.scrolledToBottomPage = true;
-        EventBus.$emit("cursor-deactive");
-      }
     },
     onEnterNextProject() {
       this.isEnteringNextProject = true;
@@ -189,15 +179,6 @@ export default {
     },
   },
   computed: {
-    columnNumber() {
-      return 5;
-    },
-    imageSliderWidth() {
-      return this.$screen.width * 0.7;
-    },
-    imageSliderHeight() {
-      return ((this.$screen.width * 0.7) / 16) * 9;
-    },
     scrollToTopIconCursor() {
       return this.percentage >= 95 ? "pointer" : "default";
     },
@@ -208,264 +189,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.page-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-}
-
-.page-container::-webkit-scrollbar {
-  display: none;
-}
-
-.section {
-  width: 100%;
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-#section-2 {
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.project-title {
-  padding: 0 64px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 128px;
-  font-weight: 100;
-  text-transform: capitalize;
-  word-spacing: 0.2em;
-  white-space: pre-line;
-  pointer-events: none;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  mix-blend-mode: difference;
-}
-
-.center-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 192px;
-  color: #f00;
-  text-transform: uppercase;
-  text-align: center;
-  mix-blend-mode: difference;
-  line-height: 192px;
-}
-
-.image-slider {
-  margin: 0 0 32px 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-self: center;
-  overflow: scroll hidden;
-  border-radius: 2px;
-}
-
-.image-slider::-webkit-scrollbar {
-  display: none;
-}
-
-.image-wrapper {
-  width: 100%;
-  height: 100%;
-  min-width: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top left;
-}
-
-.project-description {
-  margin: 0 0 32px 0;
-  padding: 0 128px;
-}
-
-.project-description::first-letter {
-  margin: 0.1em 0.1em 0 0;
-  float: left;
-  font-size: 3.6em;
-  line-height: 0.6em;
-}
-
-.section-title {
-  padding: 72px 32px 32px 32px;
-  position: sticky;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: row;
-  z-index: 1;
-}
-.section-title span {
-  display: flex;
-  align-items: flex-end;
-  font-style: italic;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-.section-title span:nth-child(1) {
-  margin: 0 16px 0 32px;
-  line-height: 16px;
-  font-size: 16px;
-  color: rgba(0, 255, 255, 0.9);
-}
-.section-title span:nth-child(2) {
-  line-height: 32px;
-  font-size: 32px;
-  font-weight: 500;
-}
-
-.page-content-container {
-  margin: 0;
-  padding: 0 96px;
-  width: 100%;
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.page-content-container span {
-  margin: 8px 0;
-}
-
-.mobile-frame-wrapper {
-  margin: 8px 128px;
-  width: calc(100% - 256px);
-  height: auto;
-  box-sizing: border-box;
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-}
-
-.mobile-frame-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.mobile-frame-slider {
-  margin: 0 0 32px 0;
-  width: 270px;
-  height: 570px;
-  position: relative;
-  align-self: center;
-  border-left: 2.5px solid #1f1f1f;
-  border-right: 2.5px solid #1f1f1f;
-  border-top: 4px solid #1f1f1f;
-  border-bottom: 4px solid #1f1f1f;
-  border-radius: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.camera {
-  width: 8px;
-  height: 8px;
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #000000;
-  z-index: 1;
-}
-
-.circle {
-  width: 4px;
-  height: 4px;
-  border: 0.1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  z-index: 1;
-}
-
-#circular-text {
-  margin: 48px 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.center-text {
-  margin: 48px 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 32px;
-  text-transform: uppercase;
-  transition: 0.1s ease-in-out;
-  pointer-events: none;
-}
-
-.scroll-to-top-icon {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.9);
-  mix-blend-mode: difference;
-  transition: 0.35s ease-in-out;
-  cursor: pointer;
-  z-index: 2;
-}
-
-@media only screen and (max-width: 992px) {
-  .project-title {
-    font-size: 96px;
-  }
-  .project-description {
-    padding: 32px 72px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .project-title {
-    font-size: 72px;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .section-title span:nth-child(1) {
-    margin: 0 16px 0 0;
-  }
-  .section-title span:nth-child(2) {
-    font-size: 24px;
-    line-height: 24px;
-  }
-  .project-title {
-    font-size: 64px;
-  }
-  .project-description {
-    padding: 32px 32px;
-  }
-  .page-content-container {
-    padding: 0 48px;
-  }
-}
+<style lang="scss" scoped>
+@use "@/assets/scss/main.scss";
 </style>

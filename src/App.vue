@@ -4,7 +4,6 @@
     <span class="material-icons nav-menu-icon" @click="onClickNavIcon()">
       {{ this.isNavActive ? "close" : "menu" }}
     </span>
-    <CustomCursor v-if="this.$screen.width >= 768" />
     <vue-page-transition name="overlay-right">
       <router-view />
     </vue-page-transition>
@@ -15,7 +14,6 @@
 <script>
 import { gsap } from "gsap";
 
-import CustomCursor from "./components/CustomCursor.vue";
 import Navigator from "./views/Navigator.vue";
 
 import eventBus from "./eventBus";
@@ -27,7 +25,6 @@ export default {
     };
   },
   components: {
-    CustomCursor,
     Navigator,
   },
   mounted() {
@@ -69,7 +66,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@use "@/assets/scss/main.scss";
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap");
 
 * {
@@ -88,32 +86,8 @@ body {
   overflow: hidden;
 }
 
-.light {
-  background: #f8f8f8;
-  color: rgba(0, 0, 0, 0.9);
-}
-
-.dark {
-  background: #000000;
-  color: rgba(255, 255, 255, 0.9);
-}
-
 .full-page {
   min-height: 100%;
-}
-
-.vertical-bottom-left-text {
-  position: absolute;
-  bottom: 32px;
-  left: 32px;
-  font-size: 2vh;
-  font-weight: 500;
-  font-style: italic;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  writing-mode: vertical-rl;
-  mix-blend-mode: difference;
-  color: rgba(255, 255, 255, 0.9);
 }
 
 #app {
@@ -156,8 +130,8 @@ body {
   color: rgba(255, 255, 255, 0.9);
   mix-blend-mode: difference;
   transition: 0.35s;
-}
-.nav-menu-icon:hover {
-  color: rgba(0, 255, 255, 0.9);
+  &:hover {
+    color: rgba(0, 255, 255, 0.9);
+  }
 }
 </style>
