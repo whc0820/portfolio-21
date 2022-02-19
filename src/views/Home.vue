@@ -37,7 +37,7 @@
           </p>
           <p>
             Outside of my professional and coding lives, I love watching anime
-            and I'm also a electric guitarist loves playing rock and covering
+            and I'm also a electric guitar player loves playing rock and covering
             anime music! I'm often too enthusiastic about doing something, that
             I've accidentally ruptured my tendors while playing it once.
           </p>
@@ -596,6 +596,7 @@ export default {
   align-items: center;
   & span:nth-child(1) {
     margin-right: 16px;
+    text-decoration: underline;
   }
   & span:nth-child(2) {
     font-size: 16px;

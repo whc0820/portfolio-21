@@ -1,6 +1,6 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
-    <div class="section full-page light" id="section-1">
+    <div class="section full-page light" id="section-cover">
       <div class="section-max-width">
         <b-img-lazy
           :src="
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="section light" id="section-2">
+    <div class="section light" id="section-overview">
       <div class="section-max-width">
         <div class="section-header">
           <span>01.</span>
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="section light" id="section-3">
+    <div class="section light" id="section-rwd">
       <div class="section-max-width">
         <div class="section-header">
           <span>02.</span>
@@ -73,7 +73,7 @@
         </b-carousel>
       </div>
     </div>
-    <div class="section light" id="section-4">
+    <div class="section light" id="section-techs">
       <div class="section-max-width">
         <div class="section-header">
           <span>03.</span>
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div class="section light" id="section-5">
+    <div class="section light" id="section-next-project">
       <div class="section-max-width">
         <div class="section-header">
           <span>04.</span>

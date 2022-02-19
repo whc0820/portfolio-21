@@ -30,7 +30,7 @@ export default {
   mounted() {
     eventBus.$on("route-change", (hash) => {
       this.isNavActive = false;
-      const nav = document.querySelector(".nav");
+      const nav = document.querySelector("#nav");
       gsap.to(nav, {
         x: this.$screen.width,
         duration: 0.35,
@@ -55,7 +55,7 @@ export default {
   methods: {
     onClickNavIcon() {
       this.isNavActive = !this.isNavActive;
-      const mobileNav = document.querySelector(".nav");
+      const mobileNav = document.querySelector("#nav");
       if (this.isNavActive) {
         gsap.to(mobileNav, { x: 0, duration: 0.35 });
       } else {
@@ -105,7 +105,8 @@ body {
   position: fixed;
   top: 32px;
   left: 32px;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 24px;
   font-size: 24px;
   font-family: "Source Code Pro", monospace;
   letter-spacing: 0.2em;

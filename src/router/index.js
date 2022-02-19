@@ -6,7 +6,6 @@ Vue.use(VueRouter);
 Vue.use(VuePageTransition);
 
 const Home = () => import(/* webpackPrefetch: true */ '@/views/Home.vue');
-const Projects = () => import(/* webpackPrefetch: true */ '@/views/Projects.vue');
 const SchemeClerkSystem = () => import(/* webpackPrefetch: true */ '@/views/SchemeClerkSystem.vue');
 const VisitorPredictor = () => import(/* webpackPrefetch: true */ '@/views/VisitorPredictor.vue');
 const LedVisualizer = () => import(/* webpackPrefetch: true */ '@/views/LedVisualizer.vue');
@@ -22,11 +21,6 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/projects',
-    name: 'Projects',
-    component: Projects,
   },
   {
     path: '/scheme-clerk-system',

@@ -1,24 +1,28 @@
 <template>
-  <div class="nav dark">
-    <div class="nav-row" @click="onClickLink('home')">
-      <span>00.</span>
-      <span>Home</span>
-    </div>
-    <div class="nav-row" @click="onClickLink('about')">
-      <span>01.</span>
-      <span>About</span>
-    </div>
-    <div class="nav-row" @click="onClickLink('projects')">
-      <span>02.</span>
-      <span>Projects</span>
-    </div>
-    <div class="nav-row" @click="onClickLink('experience')">
-      <span>03.</span>
-      <span>Experience</span>
-    </div>
-    <div class="nav-row" @click="onClickLink('contact')">
-      <span>04.</span>
-      <span>Contact</span>
+  <div class="page-container dark" id="nav">
+    <div class="section">
+      <div class="section-max-width">
+        <div class="nav-row" @click="onClickLink('home')">
+          <span>00.</span>
+          <span>Home</span>
+        </div>
+        <div class="nav-row" @click="onClickLink('about')">
+          <span>01.</span>
+          <span>About</span>
+        </div>
+        <div class="nav-row" @click="onClickLink('projects')">
+          <span>02.</span>
+          <span>Projects</span>
+        </div>
+        <div class="nav-row" @click="onClickLink('experience')">
+          <span>03.</span>
+          <span>Experience</span>
+        </div>
+        <div class="nav-row" @click="onClickLink('contact')">
+          <span>04.</span>
+          <span>Contact</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,25 +40,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav {
-  padding: 128px 64px;
-  width: 100%;
-  height: 100%;
+#nav {
   position: fixed;
   top: 0;
   left: 0;
   transform: translateX(100%);
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: nowrap;
 }
 
 .nav-row {
+  padding: 0 0 32px 32px;
   width: 100%;
   cursor: pointer;
+  &:nth-child(1) {
+    padding: 160px 32px 32px 32px;
+  }
   & span:nth-child(1) {
     margin: 0 24px 0 0;
     font-size: 24px;
@@ -85,11 +85,7 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .nav {
-    padding: 128px 32px;
-  }
   .nav-row {
-    padding: 16px 0;
     & span:nth-child(2) {
       font-size: 48px;
     }
@@ -97,9 +93,6 @@ export default {
 }
 
 @media only screen and (max-width: 576px) {
-  .nav {
-    padding: 128px 32px;
-  }
   .nav-row {
     & span:nth-child(1) {
       margin: 0 12px 0 0;

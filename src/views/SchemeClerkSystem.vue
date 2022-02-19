@@ -1,6 +1,6 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
-    <div class="section full-page light" id="section-1">
+    <div class="section full-page light" id="section-cover">
       <div class="section-max-width">
         <b-img-lazy
           :src="
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="section light" id="section-2">
+    <div class="section light" id="section-overview">
       <div class="section-max-width">
         <div class="section-header">
           <span>01.</span>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="section light" id="section-3">
+    <div class="section light" id="section-rwd">
       <div class="section-max-width">
         <div class="section-header">
           <span>02.</span>
@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    <div class="section dark" id="section-4">
+    <div class="section dark" id="section-dark-mode">
       <div class="section-max-width dark">
         <div class="section-header">
           <span>03.</span>
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <div class="section dark" id="section-5">
+    <div class="section dark" id="section-techs">
       <div class="section-max-width">
         <div class="section-header">
           <span>04.</span>
@@ -109,7 +109,7 @@
       </div>
     </div>
 
-    <div class="section dark" id="section-6">
+    <div class="section dark" id="section-next-project">
       <div class="section-max-width">
         <div class="section-header">
           <span>05.</span>
@@ -216,19 +216,4 @@ export default {
 
 <style lang="scss" scoped>
 @use "@/assets/scss/main.scss";
-
-#section-1 {
-  padding: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#section-3 {
-  & .section-max-width {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
 </style>

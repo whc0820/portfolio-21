@@ -1,6 +1,6 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
-    <div class="section full-page dark" id="section-1">
+    <div class="section full-page dark" id="section-cover">
       <div class="section-max-width">
         <b-img-lazy
           :src="require('@/static/beauty-crawler/beauty_crawler_cover.png')"
@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="section dark" id="section-2">
+    <div class="section dark" id="section-overview">
       <div class="section-max-width">
         <div class="section-header">
           <span>01.</span>
@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="section dark" id="section-3">
+    <div class="section dark" id="section-rwd">
       <div class="section-max-width">
         <div class="section-header">
           <span>02.</span>
@@ -69,7 +69,7 @@
         </b-carousel>
       </div>
     </div>
-    <div class="section dark" id="section-4">
+    <div class="section dark" id="section-techs">
       <div class="section-max-width">
         <div class="section-header">
           <span>03.</span> <span>Techs &amp; Tools</span>
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div class="section dark" id="section-5">
+    <div class="section dark" id="section-next-project">
       <div class="section-max-width">
         <div class="section-header">
           <span>04.</span>

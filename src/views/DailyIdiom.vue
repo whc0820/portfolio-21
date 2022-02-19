@@ -1,12 +1,14 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
-    <div class="section light full-page" id="section-1">
-      <div class="project-title">
-        <span>Daily</span>
-        <span>Idiom</span>
+    <div class="section light full-page" id="section-cover">
+      <div class="section-max-width">
+        <div class="project-title">
+          <span>Daily</span>
+          <span>Idiom</span>
+        </div>
       </div>
     </div>
-    <div class="section light" id="section-2">
+    <div class="section light" id="section-overview">
       <div class="section-max-width">
         <div class="section-header">
           <span>01.</span>
@@ -43,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="section dark" id="section-3">
+    <div class="section dark" id="section-rwd">
       <div class="section-max-width">
         <div class="section-header">
           <span>02.</span>
@@ -178,8 +180,7 @@ export default {
 <style lang="scss" scoped>
 @use "@/assets/scss/main.scss";
 
-#section-2,
-#section-3 {
+#section-overview {
   & .section-max-width {
     display: flex;
     flex-direction: column;
@@ -188,15 +189,7 @@ export default {
 }
 
 .project-title {
-  padding: 128px 0 0 0;
-  top: 0;
-  left: 0;
-  transform: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
+  position: relative;
   background: repeating-linear-gradient(
       -45deg,
       transparent 0px,
@@ -206,35 +199,19 @@ export default {
     ),
     linear-gradient(180deg, #0ff, #f00);
   background-clip: text;
-  background-attachment: fixed;
   & span {
     color: transparent;
-    line-height: 232px;
-    font-size: 232px;
-    font-weight: 800;
     text-transform: uppercase;
-    word-spacing: 0.2em;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .project-title {
-    & span {
-      font-size: 192px;
-      line-height: 192px;
-    }
+    font-size: 16vw;
+    line-height: 16vw;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .project-title {
-    flex-direction: row-reverse;
-    align-items: center;
-    word-break: break-all;
     & span {
-      font-size: 192px;
-      line-height: 192px;
-      writing-mode: vertical-rl;
+      font-size: 64px;
+      line-height: 64px;
     }
   }
 }
