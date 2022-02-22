@@ -1,16 +1,12 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
-    <div class="section full-page light" id="section-cover">
+    <div class="section light" id="section-home">
       <div class="section-max-width">
-        <b-img-lazy
-          :src="
-            require('@/static/visitor-predictor/visitor_predictor_cover.png')
-          "
-          :fluid="this.$screen.width > 768 ? true : false"
-        />
-        <div class="project-title">
-          <span>Visitor</span>
-          <span>Predictor</span>
+        <div class="home-title">
+          <span>January, 2020</span>
+          <span>Visitor Predictor</span>
+          <span>Big Data Analysis Course Project</span>
+          <span>A tool that help building time series model.</span>
         </div>
       </div>
     </div>
@@ -86,19 +82,12 @@
         </div>
       </div>
     </div>
-    <div class="section light" id="section-next-project">
-      <div class="section-max-width">
-        <div class="section-header">
-          <span>04.</span>
-          <span>Next Project</span>
-        </div>
-        <div class="page-content-container">
-          <span class="next-project-title" @click="onClickNextProject()"
-            >&#8594; LED Visualizer
-          </span>
-        </div>
-      </div>
-    </div>
+    <ProjectNavSection
+      previousProjectName="Scheme Clerk System"
+      previousProjectPath="scheme-clerk-system"
+      nextProjectName="LED Visualizer"
+      nextProjectPath="led-visualizer"
+    />
     <Footer />
     <ProgressBar :percentage="this.percentage" />
     <div
@@ -115,27 +104,25 @@
 </template>
 
 <script>
-import EventBus from "../eventBus";
-
 const BCarousel = () =>
   import("bootstrap-vue").then((module) => module.BCarousel);
-const BImgLazy = () =>
-  import("bootstrap-vue").then((module) => module.BImgLazy);
 
 const ProgressBar = () =>
   import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 const MobileFrame = () =>
   import(/* webpackPrefetch: true */ "@/components/MobileFrame.vue");
+const ProjectNavSection = () =>
+  import(/* webpackPrefetch: true */ "@/components/ProjectNavSection.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
 
 export default {
   components: {
     BCarousel,
-    BImgLazy,
     ProgressBar,
     MobileFrame,
-    Footer
+    ProjectNavSection,
+    Footer,
   },
   data() {
     return {
@@ -151,17 +138,6 @@ export default {
       this.percentage =
         (scrollTop / (event.srcElement.scrollHeight - this.$screen.height)) *
         100;
-    },
-    onEnterNextProject() {
-      this.isEnteringNextProject = true;
-      EventBus.$emit("cursor-active", "right", "next");
-    },
-    onLeaveNextProject() {
-      this.isEnteringNextProject = false;
-      EventBus.$emit("cursor-deactive");
-    },
-    onClickNextProject() {
-      this.$router.push("led-visualizer");
     },
     onClickScrollToTopIcon() {
       if (this.percentage >= 95) {

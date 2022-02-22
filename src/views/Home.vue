@@ -37,9 +37,10 @@
           </p>
           <p>
             Outside of my professional and coding lives, I love watching anime
-            and I'm also a electric guitar player loves playing rock and covering
-            anime music! I'm often too enthusiastic about doing something, that
-            I've accidentally ruptured my tendors while playing it once.
+            and I'm also a electric guitar player loves playing rock and
+            covering anime music! I'm often too enthusiastic about doing
+            something, that I've accidentally ruptured my tendors while playing
+            it once.
           </p>
         </div>
       </div>
@@ -163,9 +164,6 @@ export default {
   data() {
     return {
       percentage: 0,
-      scrolledToBottomPage: false,
-      isEnteringNextProject: false,
-      sectionObserver: null,
       educations: [
         {
           name: "Master Degree",
@@ -326,7 +324,7 @@ export default {
         },
         {
           name: "Beauty Crawler",
-          desc: "A tool that crawls the images from the Taiwanese forum PTT Beauty community and relayout it with the web UI.",
+          desc: "A tool that crawls the images from the forum PTT Beauty community and relayout it with the web UI.",
           path: "/beauty-crawler",
         },
       ],
@@ -396,9 +394,6 @@ export default {
     scrollToTopIconOpacity() {
       return this.percentage >= 100 ? 1 : 0;
     },
-    skillsLength() {
-      return this.skills.length;
-    },
     projectsLength() {
       return this.projects.length;
     },
@@ -411,46 +406,13 @@ export default {
 
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap");
 
-.home-title {
-  padding: 160px 32px 32px 32px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  & span:nth-child(1) {
-    line-height: 64px;
-    font-size: 16px;
-    font-style: italic;
-    color: #0ff;
-    word-spacing: 0.5em;
-  }
-  & span:nth-child(2) {
-    line-height: 64px;
-    font-size: 64px;
-    font-family: "Source Code Pro", monospace;
-    color: rgba(255, 255, 255, 0.9);
-  }
-  & span:nth-child(3) {
-    font-size: 64px;
-    font-weight: 500;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  & span:nth-child(4) {
-    margin: 16px 0 0 0;
-    font-size: 16px;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.7);
-  }
-}
-
 .divider {
-  width: calc(100% + 64px);
+  width: 100%;
   height: 1px;
   min-height: 1px;
   position: absolute;
   bottom: 0;
-  left: -32px;
+  left: 0;
   background: #1f1f1f;
 }
 
@@ -512,12 +474,14 @@ export default {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
 }
-.exp-row-right-reverse .exp-title,
-.exp-row-right-reverse .exp-name,
-.exp-row-right-reverse .exp-location {
-  align-self: flex-end;
-  align-items: flex-end;
-  text-align: right;
+.exp-row-right-reverse {
+  & .exp-title,
+  .exp-name,
+  .exp-location {
+    align-self: flex-end;
+    align-items: flex-end;
+    text-align: right;
+  }
 }
 .exp-row-right .exp-title {
   text-align: left;
@@ -541,13 +505,17 @@ export default {
   margin: 8px 0;
   color: rgba(255, 255, 255, 0.8);
 }
-.exp-row-left .exp-desc,
-.exp-row-right-reverse .exp-desc {
-  text-align: right;
+.exp-row-left,
+.exp-row-right-reverse {
+  & .exp-desc {
+    text-align: right;
+  }
 }
-.exp-row-right .exp-desc,
-.exp-row-left-reverse .exp-desc {
-  text-align: left;
+.exp-row-right,
+.exp-row-left-reverse {
+  & .exp-desc {
+    text-align: left;
+  }
 }
 
 .exp-content {
@@ -596,7 +564,6 @@ export default {
   align-items: center;
   & span:nth-child(1) {
     margin-right: 16px;
-    text-decoration: underline;
   }
   & span:nth-child(2) {
     font-size: 16px;
@@ -695,8 +662,8 @@ export default {
 }
 
 @media only screen and (max-width: 576px) {
-  .about-content {
-    font-size: 20px;
+  .about-content p {
+    text-align: justify;
   }
 
   .exp-row,
@@ -710,31 +677,32 @@ export default {
     padding: 8px 16px;
   }
 
-  .exp-row-left,
-  .exp-row-right-reverse,
   .exp-row-right,
-  .exp-row-left-reverse {
+  .exp-row-right-reverse {
     margin: 8px 0;
     width: 100%;
     align-items: flex-start;
   }
-
-  .exp-row-right-reverse .exp-title,
-  .exp-row-right-reverse .exp-name,
-  .exp-row-right-reverse .exp-location {
-    align-self: flex-start;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .exp-row-left .exp-desc {
-    text-align: left;
+  .exp-row-right-reverse {
+    & .exp-title,
+    .exp-name,
+    .exp-location {
+      align-self: flex-start;
+      align-items: flex-start;
+      text-align: left;
+    }
   }
 
   .exp-row-left,
   .exp-row-left-reverse {
+    margin: 0 0 16px 0;
+    width: 100%;
+    align-items: flex-start;
     font-size: 16px;
     font-style: italic;
+  }
+  .exp-row-left .exp-desc {
+    text-align: left;
   }
 
   .vertical-line,
@@ -742,14 +710,13 @@ export default {
     display: none;
   }
 
-  .table-right {
-    padding: 0;
-    max-height: none;
-  }
-
   .table-left span:nth-child(1) {
     margin-right: 8px;
     max-width: 112px;
+  }
+  .table-right {
+    padding: 0;
+    max-height: none;
   }
 }
 </style>

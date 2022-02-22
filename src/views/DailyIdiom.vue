@@ -1,10 +1,12 @@
 <template>
   <div class="page-container" @scroll="onPageScroll">
-    <div class="section light full-page" id="section-cover">
+    <div class="section light" id="section-home">
       <div class="section-max-width">
-        <div class="project-title">
-          <span>Daily</span>
-          <span>Idiom</span>
+        <div class="home-title">
+          <span>July, 2020</span>
+          <span>Daily Idiom</span>
+          <span>Digital Learning Course Project</span>
+          <span>A mobile APP that help user learn Chinese idioms daily.</span>
         </div>
       </div>
     </div>
@@ -75,7 +77,7 @@
         </b-carousel>
       </div>
     </div>
-    <div class="section dark" id="section-4">
+    <div class="section dark" id="section-techs">
       <div class="section-max-width">
         <div class="section-header">
           <span>03.</span>
@@ -88,19 +90,12 @@
         </div>
       </div>
     </div>
-    <div class="section dark" id="section-5">
-      <div class="section-max-width">
-        <div class="section-header">
-          <span>04.</span>
-          <span>Next Project</span>
-        </div>
-        <div class="page-content-container">
-          <span class="next-project-title" @click="onClickNextProject()"
-            >&#8594; Scheme Clerk System</span
-          >
-        </div>
-      </div>
-    </div>
+    <ProjectNavSection
+      previousProjectName="Beauty Crawler"
+      previousProjectPath="beauty-crawler"
+      nextProjectName="Scheme Clerk System"
+      nextProjectPath="scheme-clerk-system"
+    />
     <Footer />
     <ProgressBar :percentage="this.percentage" />
     <div
@@ -124,6 +119,8 @@ const ProgressBar = () =>
   import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 const MobileFrame = () =>
   import(/* webpackPrefetch: true */ "@/components/MobileFrame.vue");
+const ProjectNavSection = () =>
+  import(/* webpackPrefetch: true */ "@/components/ProjectNavSection.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
 
@@ -132,6 +129,7 @@ export default {
     BCarousel,
     ProgressBar,
     MobileFrame,
+    ProjectNavSection,
     Footer,
   },
   data() {
@@ -155,9 +153,6 @@ export default {
       this.percentage =
         (scrollTop / (event.srcElement.scrollHeight - this.$screen.height)) *
         100;
-    },
-    onClickNextProject() {
-      this.$router.push("scheme-clerk-system");
     },
     onClickScrollToTopIcon() {
       if (this.percentage >= 95) {
@@ -210,8 +205,9 @@ export default {
 @media only screen and (max-width: 576px) {
   .project-title {
     & span {
-      font-size: 64px;
-      line-height: 64px;
+      font-size: 128px;
+      line-height: 128px;
+      writing-mode: vertical-lr;
     }
   }
 }

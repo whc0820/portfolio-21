@@ -39,7 +39,6 @@
     align-items: flex-end;
     mix-blend-mode: difference;
     pointer-events: none;
-    z-index: 1;
     & span {
         font-weight: 500;
         font-style: italic;
@@ -214,22 +213,54 @@
     }
 }
 
-.next-project-title {
-    padding: 16px 0 32px 0;
-    font-size: 64px;
-    font-style: italic;
-    letter-spacing: 0.1em;
-    text-decoration: underline;
-    cursor: pointer;
-    &:hover {
-        color: rgba(0, 255, 255, 0.9);
-        mix-blend-mode: difference;
+.home-title {
+    padding: 160px 32px 32px 32px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    mix-blend-mode: difference;
+    & span:nth-child(1) {
+        line-height: 64px;
+        font-size: 16px;
+        font-style: italic;
+        color: #0ff;
+        word-spacing: 0.5em;
+    }
+    & span:nth-child(2) {
+        line-height: 64px;
+        font-size: 64px;
+        font-family: "Source Code Pro", monospace;
+        word-break: break-word;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    & span:nth-child(3) {
+        font-size: 64px;
+        font-weight: 500;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    & span:last-child {
+        margin: 16px 0 0 0;
+        font-size: 16px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.7);
     }
 }
 
 @media only screen and (max-width: 576px) {
     #section-cover {
         padding: 80px 32px;
+    }
+
+    .home-title {
+        padding: 120px 32px 32px 32px;
+        & span:nth-child(3) {
+            font-size: 48px;
+        }
+        & span:nth-child(4) {
+            text-align: justify;
+        }
     }
 
     .section-header {
@@ -253,6 +284,7 @@
 
     .project-description {
         padding: 16px 48px;
+        text-align: justify;
     }
     .page-content-container {
         padding: 0 48px;
