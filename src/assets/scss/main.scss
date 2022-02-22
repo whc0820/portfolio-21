@@ -13,6 +13,8 @@
     display: inline-flex;
     flex-direction: column;
     overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
         display: none;
     }
@@ -189,7 +191,6 @@
     align-items: center;
     color: rgba(255, 255, 255, 0.9);
     mix-blend-mode: difference;
-    transition: 0.35s ease-in-out;
     cursor: pointer;
     z-index: 2;
     &:hover {

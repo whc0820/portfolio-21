@@ -130,7 +130,6 @@ body {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.9);
   mix-blend-mode: difference;
-  transition: 0.35s;
   &:hover {
     color: rgba(0, 255, 255, 0.9);
   }
