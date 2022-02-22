@@ -95,6 +95,8 @@
     align-self: center;
     overflow: scroll hidden;
     border-radius: 2px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
         display: none;
     }
