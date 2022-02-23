@@ -6,7 +6,7 @@
           <span>January, 2020</span>
           <span>Visitor Predictor</span>
           <span>Big Data Analysis Course Project</span>
-          <span>A tool that help building time series model.</span>
+          <span>A tool that help building time series model to predict the vistors.</span>
         </div>
       </div>
     </div>
@@ -83,10 +83,10 @@
       </div>
     </div>
     <ProjectNavSection
-      previousProjectName="Scheme Clerk System"
-      previousProjectPath="scheme-clerk-system"
-      nextProjectName="LED Visualizer"
-      nextProjectPath="led-visualizer"
+      previousProjectName="Daily Idiom"
+      previousProjectPath="daily-idiom"
+      nextProjectName="Scheme Clerk System"
+      nextProjectPath="scheme-clerk-system"
     />
     <Footer />
     <ProgressBar :percentage="this.percentage" />

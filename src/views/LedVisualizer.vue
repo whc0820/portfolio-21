@@ -82,8 +82,8 @@
       </div>
     </div>
     <ProjectNavSection
-      previousProjectName="Visitor Predictor"
-      previousProjectPath="visitor-predictor"
+      previousProjectName="Scheme Clerk System"
+      previousProjectPath="scheme-clerk-system"
       nextProjectName="Beauty Crawler"
       nextProjectPath="beauty-crawler"
     />

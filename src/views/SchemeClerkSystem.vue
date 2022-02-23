@@ -108,10 +108,10 @@
     </div>
 
     <ProjectNavSection
-      previousProjectName="Daily Idiom"
-      previousProjectPath="daily-idiom"
-      nextProjectName="Visitor Predictor"
-      nextProjectPath="visitor-predictor"
+      previousProjectName="Visitor Predictor"
+      previousProjectPath="visitor-predictor"
+      nextProjectName="Led Visualizer"
+      nextProjectPath="led-visualizer"
     />
     <Footer />
     <ProgressBar :percentage="this.percentage" />

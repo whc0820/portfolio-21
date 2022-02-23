@@ -36,11 +36,12 @@
             utilization for smaller project size and faster loading speed.
           </p>
           <p>
-            Outside of my professional and coding lives, I love watching anime
-            and I'm also a electric guitar player loves playing rock and
-            covering anime music! I'm often too enthusiastic about doing
-            something, that I've accidentally ruptured my tendors while playing
-            it once.
+            Outside of my professional and coding lives, I love watching
+            <span class="highlight-text">anime</span> and I'm also a
+            <span class="highlight-text">electric guitar player</span> loves
+            playing rock and covering anime music! I'm often too enthusiastic
+            about doing something, that I've accidentally ruptured my tendors
+            while playing it once.
           </p>
         </div>
       </div>
@@ -54,18 +55,23 @@
         <div
           v-for="(project, i) in this.projects"
           :key="project + i"
-          @click="onClickProject(project.path)"
-          class="table-row project-row"
-          :class="project.path ? 'pointer' : ''"
+          :class="i % 2 == 0 ? 'table-row' : 'table-row-reverse'"
         >
-          <div class="table-left">
-            <span>{{ project.name }}</span>
-            <span v-if="project.path" class="material-icons"> launch </span>
+          <div :class="i % 2 == 0 ? 'table-left' : 'table-left-reverse'">
+            <b-img-lazy
+              :width="project.coverType == 'desktop' ? 440 : 200"
+              :src="require(`@/static/${project.coverPath}`)"
+            />
           </div>
-          <div class="table-right">
-            <span>{{ project.desc }}</span>
+          <div :class="i % 2 == 0 ? 'table-right' : 'table-right-reverse'">
+            <p>{{ project.name }}</p>
+            <p>{{ project.type }}<span> &#9474; </span>{{ project.time }}</p>
+            <p>{{ project.desc }}</p>
+            <span @click="onClickProject(project.path)"
+              >learn more &#8594;</span
+            >
           </div>
-          <div v-if="i != projectsLength - 1" class="divider"></div>
+          <div v-if="i != projectsLength - 1" class="divider" />
         </div>
       </div>
     </div>
@@ -145,11 +151,13 @@
 <script>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TextPlugin } from "gsap/TextPlugin";
+// import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(TextPlugin);
+// gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollToPlugin);
+
+import { BImgLazy } from "bootstrap-vue";
 
 const ProgressBar = () =>
   import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
@@ -160,6 +168,7 @@ export default {
   components: {
     ProgressBar,
     Footer,
+    BImgLazy,
   },
   data() {
     return {
@@ -301,30 +310,54 @@ export default {
         },
       ],
       projects: [
-        { name: "Portfolio 21", desc: "This website." },
+        // {
+        //   name: "Portfolio 21",
+        //   desc: "This website.",
+        //   coverPath: "scheme-clerk-system/scheme_clerk_system_cover.png",
+        // },
         {
           name: "Daily Idiom",
           desc: "A mobile APP that help user learn Chinese idioms daily.",
+          coverType: "mobile",
+          coverPath: "daily-idiom/daily_idiom_image1_dark.jpg",
+          type: "Digital Learning Course Project",
+          time: "Jul. 2021",
           path: "/daily-idiom",
         },
         {
-          name: "Scheme Clerk System",
-          desc: "A project that designed for shop manager and clerk to manage their working schedule.",
-          path: "/scheme-clerk-system",
-        },
-        {
           name: "Visitor Predictor",
-          desc: "A tool that help building time series model to predict the visitors by purpose.",
+          desc: "A tool that help building time series model to predict the visitors.",
+          coverType: "desktop",
+          coverPath: "visitor-predictor/visitor_predictor_image4.png",
+          type: "Big Data Analysis Course Project",
+          time: "Jan. 2020",
           path: "/visitor-predictor",
         },
         {
+          name: "Scheme Clerk System",
+          desc: "A tool for shop manager and clerk to manage their working schedule.",
+          coverType: "desktop",
+          coverPath: "scheme-clerk-system/scheme_clerk_system_image5_light.png",
+          type: "Human and Computer Interaction Course Project",
+          time: "Dec. 2019",
+          path: "/scheme-clerk-system",
+        },
+        {
           name: "LED Visualizer",
-          desc: "A project that user can customize the LED strip's color or lighting mode through the web or mobile UI.",
+          desc: "A tool to customize the LED strip.",
+          coverType: "desktop",
+          coverPath: "led-visualizer/led_visualizer_cover.jpg",
+          type: "Personal Project",
+          time: "Mar. 2019",
           path: "/led-visualizer",
         },
         {
           name: "Beauty Crawler",
-          desc: "A tool that crawls the images from the forum PTT Beauty community and relayout it with the web UI.",
+          desc: "A tool that crawls the images from the forum, PTT Beauty community.",
+          coverType: "desktop",
+          coverPath: "beauty-crawler/beauty_crawler_image1.png",
+          type: "Personal Project",
+          time: "Nov. 2018",
           path: "/beauty-crawler",
         },
       ],
@@ -430,6 +463,7 @@ export default {
 
 .highlight-text {
   font-weight: 500;
+  text-transform: uppercase;
   color: rgba(0, 255, 255, 0.9);
 }
 
@@ -549,43 +583,79 @@ export default {
   }
 }
 
-.table-row {
+.table-row,
+.table-row-reverse {
   margin: 0 64px;
   padding: 32px 0;
   width: calc(100% - 128px);
   display: inline-flex;
-  flex-direction: row;
   position: relative;
 }
+.table-row {
+  flex-direction: row;
+}
+.table-row-reverse {
+  flex-direction: row-reverse;
+}
 
+.table-left,
+.table-left-reverse {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
 .table-left {
-  width: 50%;
-  display: inline-flex;
-  align-items: center;
-  & span:nth-child(1) {
-    margin-right: 16px;
-  }
-  & span:nth-child(2) {
-    font-size: 16px;
-  }
+  padding: 0 64px 0 0;
+  justify-content: flex-end;
 }
-
-.table-right {
+.table-left-reverse {
   padding: 0 0 0 64px;
-  width: 50%;
-  max-height: 124px;
-  display: inline-flex;
-  flex-direction: column;
   justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
-.pointer {
-  cursor: pointer;
+.table-right,
+.table-right-reverse {
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & > p:first-child {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    color: rgba($color: #fff, $alpha: 0.9);
+  }
+  & > p:nth-child(2) {
+    margin: 0;
+    font-size: 14px;
+    color: rgba($color: #0ff, $alpha: 0.9);
+    & > span {
+      margin: 0 4px;
+      color: rgba($color: #fff, $alpha: 0.9);
+    }
+  }
+  & > p:nth-child(3) {
+    margin: 8px 0;
+    color: rgba($color: #fff, $alpha: 0.7);
+  }
+  & > span {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      color: rgba($color: #0ff, $alpha: 0.9);
+    }
+  }
 }
-
-.project-row:hover .table-left {
-  color: #0ff;
+.table-right {
+  padding: 0 32px 0 64px;
+}
+.table-right-reverse {
+  padding: 0 64px 0 32px;
 }
 
 .vertical-line {
@@ -631,8 +701,8 @@ export default {
   }
 
   .contact-content {
-    margin: 0 32px 64px 32px;
-    width: calc(100% - 64px);
+    margin: 0 64px 64px 64px;
+    width: calc(100% - 128px);
   }
 
   .exp-row,
@@ -651,19 +721,56 @@ export default {
     justify-content: center;
   }
 
-  .table-row {
+  .table-row,
+  .table-row-reverse {
     margin: 0 32px;
     padding: 32px 0;
     width: calc(100% - 64px);
   }
-  .table-right {
+  .table-right,
+  .table-left-reverse {
     padding: 0 0 0 32px;
+  }
+  .table-left,
+  .table-right-reverse {
+    padding: 0 32px 0 0;
+  }
+  .table-right,
+  .table-right-reverse {
+    & > span {
+      bottom: 0px;
+      right: 0px;
+    }
   }
 }
 
 @media only screen and (max-width: 576px) {
   .about-content p {
     text-align: justify;
+  }
+
+  .table-row,
+  .table-row-reverse {
+    flex-direction: column-reverse;
+  }
+  .table-left,
+  .table-right,
+  .table-left-reverse,
+  .table-right-reverse {
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .table-right,
+  .table-right-reverse {
+    padding: 0 0 16px 0;
+    & > p {
+      text-align: justify;
+    }
+  }
+  .table-left,
+  .table-left-reverse {
+    padding: 16px 0 0 0;
   }
 
   .exp-row,
@@ -708,15 +815,6 @@ export default {
   .vertical-line,
   .exp-row-circle {
     display: none;
-  }
-
-  .table-left span:nth-child(1) {
-    margin-right: 8px;
-    max-width: 112px;
-  }
-  .table-right {
-    padding: 0;
-    max-height: none;
   }
 }
 </style>

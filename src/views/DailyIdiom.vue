@@ -93,8 +93,8 @@
     <ProjectNavSection
       previousProjectName="Beauty Crawler"
       previousProjectPath="beauty-crawler"
-      nextProjectName="Scheme Clerk System"
-      nextProjectPath="scheme-clerk-system"
+      nextProjectName="Visitor Predictor"
+      nextProjectPath="visitor-predictor"
     />
     <Footer />
     <ProgressBar :percentage="this.percentage" />
