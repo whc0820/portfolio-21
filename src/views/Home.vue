@@ -33,7 +33,9 @@
             Recently, I'm learning some framework in order to boost the
             performance and efficiency of the development task, and I'm also
             focus on the security mechanisms, better resource management,
-            utilization for smaller project size and faster loading speed.
+            utilization for smaller project size and faster loading speed. Here
+            are some techniques I'm woking on these days: Vue, Bootstrap,
+            Greensock, SCSS.
           </p>
           <p>
             Outside of my professional and coding lives, I love watching
