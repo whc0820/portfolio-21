@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .mobile-frame-container {
   margin: 32px;
   position: relative;
@@ -37,6 +37,7 @@ export default {
   border-radius: 10px;
   background-size: cover;
   background-position: top;
+  background-color: rgba($color: #0ff, $alpha: 0.15);
   background-repeat: no-repeat;
   box-sizing: border-box;
   box-shadow: -4px 4px 4px #888888;

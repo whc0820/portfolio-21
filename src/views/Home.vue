@@ -61,6 +61,7 @@
             <b-img-lazy
               :width="project.coverType == 'desktop' ? 440 : 200"
               :src="require(`@/static/${project.coverPath}`)"
+              blank-color="rgba(0, 255, 255, 0.15)"
             />
           </div>
           <div :class="i % 2 == 0 ? 'table-right' : 'table-right-reverse'">

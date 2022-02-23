@@ -87,6 +87,7 @@
               :img-src="
                 require(`@/static/scheme-clerk-system/scheme_clerk_system_image${j}_dark.png`)
               "
+              background="rgba(0, 255, 255, 0.15)"
             />
           </b-carousel>
         </div>
