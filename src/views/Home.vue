@@ -26,8 +26,9 @@
             I was a college student, I participated in "WEB Desgin" course and
             I've learned a lot about HTML &amp; CSS, since then I fell in love
             with making user interface and
-            <span class="highlight-text">super cooool animations</span>
-            !
+            <span class="animated-text">
+              <span>super cooool animations!</span>
+            </span>
           </p>
           <p>
             Recently, I'm learning some framework in order to boost the
@@ -39,11 +40,12 @@
           </p>
           <p>
             Outside of my professional and coding lives, I love watching
-            <span class="highlight-text">anime</span> and I'm also a
-            <span class="highlight-text">electric guitar player</span> loves
-            playing rock and covering anime music! I'm often too enthusiastic
-            about doing something, that I've accidentally ruptured my tendors
-            while playing it once.
+            <span class="highlighted-text"> anime </span>
+            and I'm also a
+            <span class="highlighted-text"> electric guitar player </span>
+            loves playing rock and covering anime music! I'm often too
+            enthusiastic about doing something, that I've accidentally ruptured
+            my tendors while playing it once.
           </p>
         </div>
       </div>
@@ -466,10 +468,42 @@ export default {
   }
 }
 
-.highlight-text {
+.highlighted-text {
+  color: rgba(0, 255, 255, 0.9);
   font-weight: 500;
   text-transform: uppercase;
-  color: rgba(0, 255, 255, 0.9);
+}
+.animated-text {
+  background: linear-gradient(
+    90deg,
+    rgba(63, 218, 216, 1),
+    rgba(47, 201, 226, 1),
+    rgba(28, 127, 238, 1),
+    rgba(95, 21, 242, 1),
+    rgba(186, 12, 248, 1),
+    rgba(251, 7, 217, 1),
+    rgba(255, 0, 0, 1)
+  );
+  background-position-x: 0%;
+  background-size: 400%;
+  background-clip: text;
+  animation: ani 4s infinite linear;
+  @keyframes ani {
+    0% {
+      background-position-x: 100%;
+    }
+    50% {
+      background-position-x: 0%;
+    }
+    100% {
+      background-position-x: 100%;
+    }
+  }
+  & span {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: transparent;
+  }
 }
 
 .exp-row,
