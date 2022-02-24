@@ -67,14 +67,23 @@
             />
           </div>
           <div :class="i % 2 == 0 ? 'table-right' : 'table-right-reverse'">
-            <p>{{ project.name }}</p>
+            <p>
+              {{ project.name }}
+              <a
+                v-if="project.websiteUrl"
+                :href="project.websiteUrl"
+                target="_blank"
+              >
+                <span class="material-icons"> open_in_new </span>
+              </a>
+            </p>
             <p>{{ project.type }}<span> &#9474; </span>{{ project.time }}</p>
             <p>{{ project.desc }}</p>
             <span @click="onClickProject(project.path)"
               >learn more &#8594;</span
             >
           </div>
-          <div v-if="i != projectsLength - 1" class="divider" />
+          <div class="divider" />
         </div>
       </div>
     </div>
@@ -154,10 +163,8 @@
 <script>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger);
-// gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollToPlugin);
 
 import { BImgLazy } from "bootstrap-vue";
@@ -313,11 +320,6 @@ export default {
         },
       ],
       projects: [
-        // {
-        //   name: "Portfolio 21",
-        //   desc: "This website.",
-        //   coverPath: "scheme-clerk-system/scheme_clerk_system_cover.png",
-        // },
         {
           name: "Daily Idiom",
           desc: "A mobile APP that help user learn Chinese idioms daily.",
@@ -335,6 +337,7 @@ export default {
           type: "Big Data Analysis Course Project",
           time: "Jan. 2020",
           path: "/visitor-predictor",
+          websiteUrl: "https://whc0820.github.io/visitor-predictor/",
         },
         {
           name: "Scheme Clerk System",
@@ -353,6 +356,7 @@ export default {
           type: "Personal Project",
           time: "Mar. 2019",
           path: "/led-visualizer",
+          websiteUrl: "https://led-visualizer.herokuapp.com/",
         },
         {
           name: "Beauty Crawler",
@@ -362,6 +366,7 @@ export default {
           type: "Personal Project",
           time: "Nov. 2018",
           path: "/beauty-crawler",
+          websiteUrl: "https://capoo-bot.herokuapp.com/kpop/",
         },
       ],
     };
@@ -429,9 +434,6 @@ export default {
     },
     scrollToTopIconOpacity() {
       return this.percentage >= 100 ? 1 : 0;
-    },
-    projectsLength() {
-      return this.projects.length;
     },
   },
 };
@@ -626,9 +628,27 @@ export default {
   justify-content: center;
   & > p:first-child {
     margin: 0;
+    display: flex;
+    flex-direction: row;
     font-size: 32px;
     font-weight: 500;
     color: rgba($color: #fff, $alpha: 0.9);
+    & > a {
+      margin: 0 0 0 8px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      & > span {
+        margin: 0;
+        padding: 0;
+        font-size: 32px;
+        color: rgba($color: #fff, $alpha: 0.9);
+        cursor: pointer;
+        &:hover {
+          color: rgba($color: #0ff, $alpha: 0.9);
+        }
+      }
+    }
   }
   & > p:nth-child(2) {
     margin: 0;
@@ -767,7 +787,12 @@ export default {
   .table-right,
   .table-right-reverse {
     padding: 0 0 16px 0;
-    & > p {
+    justify-content: space-between;
+    & > p:nth-child(2) {
+      text-align: justify;
+    }
+    & > p:nth-child(3) {
+      margin: 8px 0 16px 0;
       text-align: justify;
     }
   }

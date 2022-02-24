@@ -89,6 +89,7 @@
       nextProjectPath="daily-idiom"
     />
     <Footer />
+    <LeftLabel url="https://capoo-bot.herokuapp.com/kpop/" />
     <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
@@ -115,6 +116,8 @@ const ProjectNavSection = () =>
   import(/* webpackPrefetch: true */ "@/components/ProjectNavSection.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
+const LeftLabel = () =>
+  import(/* webpackPrefetch: true */ "@/components/LeftLabel.vue");
 
 export default {
   components: {
@@ -123,6 +126,7 @@ export default {
     MobileFrame,
     ProjectNavSection,
     Footer,
+    LeftLabel,
   },
   data() {
     return {

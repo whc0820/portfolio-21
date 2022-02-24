@@ -6,7 +6,10 @@
           <span>January, 2020</span>
           <span>Visitor Predictor</span>
           <span>Big Data Analysis Course Project</span>
-          <span>A tool that help building time series model to predict the vistors.</span>
+          <span
+            >A tool that help building time series model to predict the
+            vistors.</span
+          >
         </div>
       </div>
     </div>
@@ -31,7 +34,7 @@
         <div class="project-description">
           Visitor Predictor is a tool that help building time series model. The
           trainning data is from Kaggle - Visitors to Taiwan By Purpose, with
-          this tool you can customize Weighted Majority Alogrithm properties
+          this tool you can customize Weighted Majority Algorithm properties
           each time and the component will shows the line chart dynamically.
           This tool caculates the RMSE and stores the record each run time, in
           order to help user find out the highest precision and build the most
@@ -89,6 +92,7 @@
       nextProjectPath="scheme-clerk-system"
     />
     <Footer />
+    <LeftLabel url="https://whc0820.github.io/visitor-predictor/" />
     <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
@@ -115,6 +119,8 @@ const ProjectNavSection = () =>
   import(/* webpackPrefetch: true */ "@/components/ProjectNavSection.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
+const LeftLabel = () =>
+  import(/* webpackPrefetch: true */ "@/components/LeftLabel.vue");
 
 export default {
   components: {
@@ -123,6 +129,7 @@ export default {
     MobileFrame,
     ProjectNavSection,
     Footer,
+    LeftLabel,
   },
   data() {
     return {

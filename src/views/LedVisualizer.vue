@@ -31,10 +31,10 @@
         <div class="project-description">
           LED Visualizer is a project that user can customize the LED strip's
           color or lighting mode through the web or mobile UI. The controller is
-          based on the arduino D1 which subscribes to the MQTT events to receive
+          based on the Arduino D1 which subscribes to the MQTT events to receive
           frontend's request and toggle the LED strip. One of the features is
           the music mode, we installed a voice detector on the D1 board that the
-          LEDs can interact with the melody, which makes the music visulaize.
+          LEDs can interact with the melody, which makes the music visualize.
         </div>
       </div>
     </div>
@@ -88,6 +88,7 @@
       nextProjectPath="beauty-crawler"
     />
     <Footer />
+    <LeftLabel url="https://led-visualizer.herokuapp.com/" />
     <ProgressBar :percentage="this.percentage" />
     <div
       class="scroll-to-top-icon"
@@ -114,6 +115,8 @@ const ProjectNavSection = () =>
   import(/* webpackPrefetch: true */ "@/components/ProjectNavSection.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
+const LeftLabel = () =>
+  import(/* webpackPrefetch: true */ "@/components/LeftLabel.vue");
 
 export default {
   components: {
@@ -122,6 +125,7 @@ export default {
     MobileFrame,
     ProjectNavSection,
     Footer,
+    LeftLabel,
   },
   data() {
     return {
