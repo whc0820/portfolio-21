@@ -34,7 +34,7 @@ export default {
   align-items: center;
   color: rgba(255, 255, 255, 0.9);
   mix-blend-mode: difference;
-  transition: 0.35s;
+  transition: opacity 0.35s;
   cursor: pointer;
   z-index: 2;
   &:hover {

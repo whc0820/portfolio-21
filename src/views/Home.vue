@@ -463,32 +463,37 @@ export default {
 }
 .animated-text {
   background: linear-gradient(
-    90deg,
+    -45deg,
     rgba(63, 218, 216, 1),
     rgba(47, 201, 226, 1),
     rgba(28, 127, 238, 1),
     rgba(95, 21, 242, 1),
     rgba(186, 12, 248, 1),
     rgba(251, 7, 217, 1),
-    rgba(255, 0, 0, 1)
+    rgba(255, 0, 0, 1),
+    rgba(251, 7, 217, 1),
+    rgba(186, 12, 248, 1),
+    rgba(95, 21, 242, 1),
+    rgba(28, 127, 238, 1),
+    rgba(47, 201, 226, 1),
+    rgba(63, 218, 216, 1),
+    rgba(47, 201, 226, 1),
   );
   background-position-x: 0%;
   background-size: 400%;
   background-clip: text;
-  animation: ani 4s infinite linear;
+  animation: ani 8s infinite linear;
+  animation-fill-mode: forwards;
   @keyframes ani {
     0% {
-      background-position-x: 100%;
-    }
-    50% {
-      background-position-x: 0%;
+      background-position-x: 400%;
     }
     100% {
-      background-position-x: 100%;
+      background-position-x: 0%;
     }
   }
   & span {
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     color: transparent;
   }
