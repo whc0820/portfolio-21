@@ -878,5 +878,10 @@ export default {
   .exp-row-circle {
     display: none;
   }
+
+  .contact-content {
+    margin: 0 32px 64px 32px;
+    width: calc(100% - 64px);
+  }
 }
 </style>
