@@ -147,18 +147,11 @@
       </div>
     </div>
     <Footer />
-
     <ProgressBar :percentage="this.percentage" />
-    <div
-      class="scroll-to-top-icon"
-      :style="{
-        opacity: scrollToTopIconOpacity,
-        cursor: scrollToTopIconCursor,
-      }"
-      @click="onClickScrollToTopIcon()"
-    >
-      <span class="material-icons"> vertical_align_top </span>
-    </div>
+    <ScrollToTopIcon
+      :percentage="this.percentage"
+      @click.native="onClickScrollToTopIcon()"
+    />
   </div>
 </template>
 
@@ -175,12 +168,15 @@ const ProgressBar = () =>
   import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
+const ScrollToTopIcon = () =>
+  import(/* webpackPrefetch: true */ "@/components/ScrollToTopIcon.vue");
 
 export default {
   components: {
+    BImgLazy,
     ProgressBar,
     Footer,
-    BImgLazy,
+    ScrollToTopIcon,
   },
   data() {
     return {
@@ -413,7 +409,7 @@ export default {
         100;
     },
     onClickScrollToTopIcon() {
-      if (this.percentage >= 95) {
+      if (this.percentage >= 99) {
         const pageScroller = document.querySelector(".page-container");
         pageScroller.scrollTo({ top: 0, behavior: "smooth" });
       }
@@ -428,14 +424,6 @@ export default {
         this.$router.replace({ path: "home", hash: `#${hash}` });
       }
       gsap.to(".page-container", { scrollTo: `#${hash}` });
-    },
-  },
-  computed: {
-    scrollToTopIconCursor() {
-      return this.percentage >= 100 ? "pointer" : "default";
-    },
-    scrollToTopIconOpacity() {
-      return this.percentage >= 100 ? 1 : 0;
     },
   },
 };

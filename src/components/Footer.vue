@@ -42,7 +42,7 @@ export default {
   background: #1f1f1f;
 }
 .footer-content {
-  padding: 48px 64px 32px 64px;
+  padding: 48px 64px 28px 64px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -72,7 +72,7 @@ a {
 #github-icon {
   position: absolute;
   bottom: 32px;
-  right: 80px;
+  right: 64px;
   line-height: 24px;
   font-size: 24px;
 }
@@ -86,11 +86,15 @@ a {
       margin: 0 0 8px 0;
     }
   }
+  #github-icon {
+    right: 80px;
+  }
 }
 
 @media only screen and (max-width: 576px) {
   .footer-content {
-    padding: 32px;
+    padding: 32px 32px 28px 32px;
   }
+  
 }
 </style>

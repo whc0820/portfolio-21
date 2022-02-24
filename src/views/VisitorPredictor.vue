@@ -94,16 +94,10 @@
     <Footer />
     <LeftLabel url="https://whc0820.github.io/visitor-predictor/" />
     <ProgressBar :percentage="this.percentage" />
-    <div
-      class="scroll-to-top-icon"
-      :style="{
-        opacity: scrollToTopIconOpacity,
-        cursor: scrollToTopIconCursor,
-      }"
-      @click="onClickScrollToTopIcon()"
-    >
-      <span class="material-icons"> vertical_align_top </span>
-    </div>
+    <ScrollToTopIcon
+      :percentage="this.percentage"
+      @click.native="onClickScrollToTopIcon()"
+    />
   </div>
 </template>
 
@@ -119,6 +113,8 @@ const ProjectNavSection = () =>
   import(/* webpackPrefetch: true */ "@/components/ProjectNavSection.vue");
 const Footer = () =>
   import(/* webpackPrefetch: true */ "@/components/Footer.vue");
+const ScrollToTopIcon = () =>
+  import(/* webpackPrefetch: true */ "@/components/ScrollToTopIcon.vue");
 const LeftLabel = () =>
   import(/* webpackPrefetch: true */ "@/components/LeftLabel.vue");
 
@@ -129,6 +125,7 @@ export default {
     MobileFrame,
     ProjectNavSection,
     Footer,
+    ScrollToTopIcon,
     LeftLabel,
   },
   data() {
@@ -147,18 +144,10 @@ export default {
         100;
     },
     onClickScrollToTopIcon() {
-      if (this.percentage >= 95) {
+      if (this.percentage >= 99) {
         const pageScroller = document.querySelector(".page-container");
         pageScroller.scrollTo({ top: 0, behavior: "smooth" });
       }
-    },
-  },
-  computed: {
-    scrollToTopIconCursor() {
-      return this.percentage >= 95 ? "pointer" : "default";
-    },
-    scrollToTopIconOpacity() {
-      return this.percentage >= 95 ? 1 : 0;
     },
   },
 };

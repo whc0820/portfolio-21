@@ -184,23 +184,6 @@
     }
 }
 
-.scroll-to-top-icon {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9);
-    mix-blend-mode: difference;
-    transition: 0.35s;
-    cursor: pointer;
-    z-index: 2;
-    &:hover {
-        color: rgba(0, 255, 255, 0.9);
-    }
-}
-
 #section-cover {
     padding: 32px;
     display: flex;
