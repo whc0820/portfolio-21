@@ -23,7 +23,7 @@
           <p>
             Hello! My name is Jason and I enjoy creating websites and mobile
             applications. My interest in front-end development started back when
-            I was a college student, I participated in "WEB Desgin" course and
+            I was a college student, I participated in "WEB Design" course and
             I've learned a lot about HTML &amp; CSS, since then I fell in love
             with making user interface and
             <span class="animated-text">
@@ -226,7 +226,7 @@ export default {
           endTime: "Aug. 2021",
           location: "Taoyuan, Taiwan",
           desc: [
-            "Maitain and develope course used website for collecting learning data of students which written in ASP.NET and SSMS.",
+            "Maitain and develop course used website for collecting learning data of students which written in ASP.NET and SSMS.",
             'Tutor of the "Basic Programming" and "Windows Form Programming" course.',
           ],
         },
@@ -247,7 +247,7 @@ export default {
           desc: [
             "Mobile APP development in native Android.",
             "WEB development in Angular.",
-            "Shell script for faster project building and deployment.",
+            "Shell script for faster project building and deployment in docker.",
           ],
         },
         {
