@@ -20,9 +20,6 @@
           ></a>
         </div>
       </div>
-      <!-- <a id="github-icon" target="_blank" href="https://github.com/whc0820"
-        ><b-icon icon="github"></b-icon
-      ></a> -->
     </div>
   </div>
 </template>

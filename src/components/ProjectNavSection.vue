@@ -51,6 +51,9 @@ export default {
       &:hover span:last-child {
         color: #0ff;
       }
+      &:last-child {
+        margin: 0 64px 0 0;
+      }
     }
   }
 }
@@ -61,6 +64,9 @@ export default {
       & .nav-project {
         & span:last-child {
           font-size: 32px;
+        }
+        &:last-child {
+          margin: 0;
         }
       }
     }
