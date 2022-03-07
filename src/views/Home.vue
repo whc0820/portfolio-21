@@ -437,6 +437,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
 }
 .exp-row-left,
 .exp-row-right-reverse {
