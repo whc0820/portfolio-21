@@ -36,11 +36,14 @@
           </b-carousel>
         </div>
         <div class="project-description">
-          Beauty Crawler is a tool that crawls the images from the Taiwanese
-          forum PTT Beauty community and relayout it with the web UI. We found
-          out that there are many garbage posts. To filter it, user can set up
-          specific keywords through the Line Bot, and the tool will only crawls
-          images from the relative posts.
+          Beauty Crawler is a tool that crawls the images from the
+          <a class="link" href="https://www.ptt.cc/bbs/Beauty/" target="_blank"
+            >Taiwanese forum PTT Beauty community</a
+          >
+          and relayout it with the web UI. We found out that there are many
+          garbage posts. To filter it, user can set up specific keywords through
+          the Line Bot, and the tool will only crawls images from the relative
+          posts.
         </div>
       </div>
     </div>
