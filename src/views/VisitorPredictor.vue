@@ -37,12 +37,17 @@
         </div>
         <div class="project-description">
           Visitor Predictor is a tool that help building time series model. The
-          trainning data is from Kaggle - Visitors to Taiwan By Purpose, with
-          this tool you can customize Weighted Majority Algorithm properties
-          each time and the component will shows the line chart dynamically.
-          This tool caculates the RMSE and stores the record each run time, in
-          order to help user find out the highest precision and build the most
-          suitable predicting model.
+          trainning data is from
+          <a
+            class="link"
+            href="https://www.kaggle.com/ceshine/visitors-to-taiwan-by-purpose/data"
+            target="_blank"
+            >Kaggle - Visitors to Taiwan By Purpose</a
+          >, with this tool you can customize Weighted Majority Algorithm
+          properties each time and the component will shows the line chart
+          dynamically. This tool caculates the RMSE and stores the record each
+          run time, in order to help user find out the highest precision and
+          build the most suitable predicting model.
         </div>
       </div>
     </div>

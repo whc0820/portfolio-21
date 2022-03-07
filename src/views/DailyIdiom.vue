@@ -44,10 +44,17 @@
         </b-carousel>
         <div class="project-description">
           Daily Idiom is a mobile APP that help user learn Chinese idioms. The
-          idioms were crawled from the online idioms dictionoary, Ministry of
-          Education. The APP will randomize idioms each day for user to learn,
-          user can check for each idioms' meaning, usage, allusion, etc. There
-          is also a simple test to find out user's learning proficiency.
+          idioms were crawled from the
+          <a
+            class="link"
+            href="https://dict.idioms.moe.edu.tw/"
+            target="_blank"
+          >
+            online idioms dictionoary, Ministry of Education</a
+          >
+          . The APP will randomize idioms each day for user to learn, user can
+          check for each idioms' meaning, usage, allusion, etc. There is also a
+          simple test to find out user's learning proficiency.
         </div>
       </div>
     </div>
