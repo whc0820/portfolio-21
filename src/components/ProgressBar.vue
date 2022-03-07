@@ -17,5 +17,6 @@ export default {
   height: 100%;
   background: rgba(0, 255, 255, 0.8);
   transition: 0.35s linear;
+  z-index: 3;
 }
 </style>

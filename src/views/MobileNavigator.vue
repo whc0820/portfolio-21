@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container dark" id="nav">
+  <div class="page-container dark" id="nav" :style="translateX">
     <div class="section">
       <div class="section-max-width">
         <div class="nav-row" @click="onClickLink('home')">
@@ -22,6 +22,9 @@
           <span>04.</span>
           <span>Contact</span>
         </div>
+        <div class="nav-row" @click="onClickLink('resume')">
+          <span>Resume</span>
+        </div>
       </div>
     </div>
   </div>
@@ -31,9 +34,21 @@
 import eventBus from "../eventBus";
 
 export default {
+  props: ["active"],
   methods: {
     onClickLink(link) {
-      eventBus.$emit("route-change", link);
+      if (link == "resume") {
+        window.open("./resume.pdf", "_blank").focus();
+      } else {
+        eventBus.$emit("route-change", link);
+      }
+    },
+  },
+  computed: {
+    translateX() {
+      return this.active
+        ? { transform: "translateX(0%)" }
+        : { transform: "translateX(100%)" };
     },
   },
 };
@@ -44,29 +59,29 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  transform: translateX(100%);
-  z-index: 2;
+  transition: transform 0.35s;
+  z-index: 1;
 }
 
 .nav-row {
-  padding: 0 0 32px 32px;
+  padding: 16px 0 16px 32px;
   width: 100%;
   cursor: pointer;
   &:nth-child(1) {
-    padding: 160px 32px 32px 32px;
+    margin: 160px 0 0 0;
   }
-  & span:nth-child(1) {
+  & > span:nth-child(1) {
     margin: 0 24px 0 0;
     font-size: 24px;
     font-style: italic;
     color: rgba(0, 255, 255, 0.9);
   }
-  & span:nth-child(2) {
+  & > span:nth-child(2) {
     position: relative;
-    font-size: 64px;
+    font-size: 32px;
     font-style: italic;
     font-weight: 500;
-    text-transform: uppercase;
+    text-transform: capitalize;
     letter-spacing: 0.2em;
     &::before {
       content: "";
@@ -82,23 +97,20 @@ export default {
   &:hover span:nth-child(2)::before {
     width: 100%;
   }
-}
-
-@media only screen and (max-width: 768px) {
-  .nav-row {
-    & span:nth-child(2) {
-      font-size: 48px;
-    }
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .nav-row {
-    & span:nth-child(1) {
-      margin: 0 12px 0 0;
-    }
-    span:nth-child(2) {
+  &:last-child {
+    padding: 16px 32px;
+    display: flex;
+    & > span {
+      margin: 0;
+      padding: 8px 0;
+      width: 100%;
       font-size: 32px;
+      text-align: center;
+      border: 1px solid rgba(0, 255, 255, 0.9);
+      border-radius: 4px;
+      &:hover {
+        background: rgba(0, 255, 255, 0.1);
+      }
     }
   }
 }

@@ -20,20 +20,48 @@ a {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background: rgba(0, 255, 255, 0.8);
+  background: rgba($color: #f00, $alpha: 1);
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   box-sizing: border-box;
-  mix-blend-mode: difference;
-  transition: 0.35s;
   cursor: pointer;
   & > span {
     line-height: 24px;
     font-size: 24px;
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba($color: #fff, $alpha: 0.9);
   }
+
+  &::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    background: transparent;
+    box-shadow: -2px -2px 0px rgba($color: #f00, $alpha: 1);
+    border-top-left-radius: 50%;
+  }
+  &::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background: transparent;
+    box-shadow: -2px 2px 0px rgba($color: #f00, $alpha: 1);
+    border-bottom-left-radius: 50%;
+  }
+
   &:hover {
-    background: rgba(255, 0, 0, 0.8);
+    background: rgba($color: #0ff, $alpha: 1);
+    &::before {
+      box-shadow: -2px -2px 0px rgba($color: #0ff, $alpha: 1);
+    }
+    &::after {
+      box-shadow: -2px 2px 0px rgba($color: #0ff, $alpha: 1);
+    }
   }
 }
 

@@ -157,12 +157,12 @@
 
 <script>
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 
 import { BImgLazy } from "bootstrap-vue";
+
+import eventBus from "../eventBus";
 
 const ProgressBar = () =>
   import(/* webpackPrefetch: true */ "@/components/ProgressBar.vue");
@@ -181,35 +181,6 @@ export default {
   data() {
     return {
       percentage: 0,
-      educations: [
-        {
-          name: "Master Degree",
-          startTime: "September 2019",
-          endTime: "August 2021",
-          location: "Yuan Ze University, Taoyuan",
-          desc: [
-            "Master of Science in the Computer Science and Engineering.",
-            "Did reasearch in the Learning Technology laboratory.",
-            'Thesis: "Identification Mechanisms of Help-Seeking Behavior Patterns and Help-Seeking Tendencies: Data-driven Clustering Approach".',
-          ],
-        },
-        {
-          name: "Bachelor Degree",
-          startTime: "September 2015",
-          endTime: "June 2019",
-          location: "Yuan Ze University, Taoyuan",
-          desc: [
-            "Bachelor of Science in the Computer Science and Engineering.",
-          ],
-        },
-        {
-          name: "High School",
-          startTime: "September 2012",
-          endTime: "June 2015",
-          location: "Cheng De High School, Hsinchu",
-          desc: ["Mathematical gifted class."],
-        },
-      ],
       experiences: [
         {
           name: "Substitute Military Service",
@@ -217,17 +188,18 @@ export default {
           startTime: "Sep. 2021",
           endTime: "Feb. 2022",
           location: "Taoyuan, Taiwan",
-          desc: ["Duty service in the Administration Section."],
+          desc: ["Duty service in the Administration Section"],
         },
         {
-          name: "Teaching Assistant",
+          name: "Research Assistant",
           organization: "Yuan Ze University",
           startTime: "Sep. 2019",
           endTime: "Aug. 2021",
           location: "Taoyuan, Taiwan",
           desc: [
-            "Maitain and develop course used website for collecting learning data of students which written in ASP.NET and SSMS.",
-            'Tutor of the "Basic Programming" and "Windows Form Programming" course.',
+            'Tutor of the "Basic Programming" and "Windows Form Programming" course',
+            "Maitain and develop course used website for collecting learning data of students",
+            "Research and analyze students' learning behaviors",
           ],
         },
         {
@@ -236,7 +208,9 @@ export default {
           startTime: "Jul. 2019",
           endTime: "Aug. 2019",
           location: "Hsinchu, Taiwan",
-          desc: ["WEB development in Angular."],
+          desc: [
+            "WEB development in Angular to control smart home devices through API",
+          ],
         },
         {
           name: "Intern",
@@ -245,9 +219,10 @@ export default {
           endTime: "Jan. 2019",
           location: "Hsinchu, Taiwan",
           desc: [
-            "Mobile APP development in native Android.",
-            "WEB development in Angular.",
-            "Shell script for faster project building and deployment in docker.",
+            "Mobile Application development in native Android to control smart home devices through API for the demonstration",
+            "Implement OAuth 2.0 server and website for account linking and control smart home devices with Google Assistant and Alex Skill Kits",
+            "Write shell script for automatic project building and remote deployment in Docker environment",
+            "Inspect and test API requests and responses follow by the Swagger's rules",
           ],
         },
         {
@@ -257,64 +232,8 @@ export default {
           endTime: "Jan. 2019",
           location: "Taipei, Taiwan",
           desc: [
-            "After school tutor of the high school and middle school students in Mathematics.",
+            "After school tutor of the high school and middle school students in Mathematics",
           ],
-        },
-      ],
-      skills: [
-        {
-          name: "Programming Languages",
-          desc: [
-            "C#",
-            "C++",
-            "Java",
-            "JavaScript",
-            "Python",
-            "R",
-            "TypeScript",
-          ],
-        },
-        {
-          name: "Frontend",
-          desc: [
-            "Android Studio",
-            "Bootstrap",
-            "CSS3",
-            "Greensock",
-            "Google Charts",
-            "HTML5",
-            "JQuery",
-            "React Native",
-            "Vue",
-            "Vuetify",
-          ],
-        },
-        {
-          name: "Backend",
-          desc: ["Docker", "Express.js", "Node.js", "NPM"],
-        },
-        {
-          name: "Cloud",
-          desc: ["AWS EC2", "Heroku"],
-        },
-        {
-          name: "Data Analysis",
-          desc: [
-            "Matplotlib",
-            "NumPy",
-            "Pandas",
-            "Plotly",
-            "SciKit Learn",
-            "SPSS",
-          ],
-        },
-        {
-          name: "Database",
-          desc: ["Firebase", "MySQL", "SSMS"],
-        },
-        {
-          name: "Internet Of Things",
-          desc: ["Arduino"],
         },
       ],
       projects: [
@@ -374,27 +293,6 @@ export default {
       const pageContainer = document.querySelector(".page-container");
       gsap.to(pageContainer, { scrollTo: `${this.$route.hash}` });
     }
-    ScrollTrigger.batch(".vertical-line", {
-      scroller: ".page-container",
-      start: "top bottom",
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          height: 0,
-          duration: 3,
-        }),
-    });
-
-    if (this.$screen.width > 576) {
-      ScrollTrigger.batch(".exp-row-circle", {
-        scroller: ".page-container",
-        start: "top bottom",
-        onEnter: (batch) =>
-          gsap.from(batch, {
-            scale: 0.1,
-            duration: 1,
-          }),
-      });
-    }
   },
   watch: {
     $route(to) {
@@ -407,6 +305,7 @@ export default {
       this.percentage =
         (scrollTop / (event.srcElement.scrollHeight - this.$screen.height)) *
         100;
+      eventBus.$emit("page-scroll", this.percentage);
     },
     onClickScrollToTopIcon() {
       if (this.percentage >= 99) {
@@ -444,6 +343,21 @@ export default {
   background: #1f1f1f;
 }
 
+.section-header {
+  & > span:first-child {
+    margin: 0 16px 0 32px;
+    font-size: 16px;
+    line-height: 16px;
+    color: rgba($color: #0ff, $alpha: 0.9);
+  }
+  & > span:nth-child(2) {
+    font-size: 32px;
+    line-height: 32px;
+    text-transform: capitalize;
+    color: rgba($color: #fff, $alpha: 0.9);
+  }
+}
+
 .about-content {
   margin: 0 64px;
   width: calc(100% - 128px);
@@ -477,7 +391,7 @@ export default {
     rgba(28, 127, 238, 1),
     rgba(47, 201, 226, 1),
     rgba(63, 218, 216, 1),
-    rgba(47, 201, 226, 1),
+    rgba(47, 201, 226, 1)
   );
   background-position-x: 0%;
   background-size: 400%;
@@ -795,6 +709,17 @@ export default {
 }
 
 @media only screen and (max-width: 576px) {
+  .section-header {
+    & > span:first-child {
+      font-size: 12px;
+      line-height: 12px;
+    }
+    & > span:nth-child(2) {
+      font-size: 24px;
+      line-height: 24px;
+    }
+  }
+
   .about-content p {
     text-align: justify;
   }

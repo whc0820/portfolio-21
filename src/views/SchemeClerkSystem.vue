@@ -11,13 +11,17 @@
             schedule.</span
           >
         </div>
+        <div class="techs">
+          <span v-for="(tech, i) in this.techs" :key="tech + i">
+            {{ tech }}
+          </span>
+        </div>
       </div>
     </div>
 
     <div class="section light" id="section-overview">
       <div class="section-max-width">
         <div class="section-header">
-          <span>01.</span>
           <span>Overview</span>
         </div>
         <div class="image-slider">
@@ -45,7 +49,6 @@
     <div class="section light" id="section-rwd">
       <div class="section-max-width">
         <div class="section-header">
-          <span>02.</span>
           <span>Responsive Design</span>
         </div>
         <div v-if="this.$screen.width > 960" class="mobile-frame-wrapper">
@@ -76,7 +79,6 @@
     <div class="section dark" id="section-dark-mode">
       <div class="section-max-width dark">
         <div class="section-header">
-          <span>03.</span>
           <span>Dark Mode</span>
         </div>
         <div class="image-slider">
@@ -90,20 +92,6 @@
               background="rgba(0, 255, 255, 0.15)"
             />
           </b-carousel>
-        </div>
-      </div>
-    </div>
-
-    <div class="section dark" id="section-techs">
-      <div class="section-max-width">
-        <div class="section-header">
-          <span>04.</span>
-          <span>Techs &amp; Tools</span>
-        </div>
-        <div class="page-content-container">
-          <span v-for="(tech, i) in this.techs" :key="tech + i">
-            &#8208; {{ tech }}
-          </span>
         </div>
       </div>
     </div>
@@ -124,6 +112,8 @@
 </template>
 
 <script>
+import eventBus from "../eventBus";
+
 const BCarousel = () =>
   import("bootstrap-vue").then((module) => module.BCarousel);
 
@@ -154,12 +144,16 @@ export default {
       techs: ["CSS3", "HTML5", "JavaScript", "Vue", "Vuetify"],
     };
   },
+  mounted() {
+    eventBus.$emit("page-scroll", 0);
+  },
   methods: {
     onPageScroll(event) {
       let scrollTop = event.srcElement.scrollTop;
       this.percentage =
         (scrollTop / (event.srcElement.scrollHeight - this.$screen.height)) *
         100;
+      eventBus.$emit("page-scroll", this.percentage);
     },
     onClickScrollToTopIcon() {
       if (this.percentage >= 99) {
