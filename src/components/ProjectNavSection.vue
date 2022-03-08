@@ -78,15 +78,28 @@ export default {
       & .nav-project {
         flex-direction: row-reverse;
         justify-content: space-between;
-        &:last-child {
-          margin: 32px 0 0 0;
-          flex-direction: row;
-        }
         & > span {
-          text-align: center;
           &:last-child {
             line-height: 24px;
             font-size: 24px;
+          }
+        }
+        &:first-child {
+          & > span:first-child {
+            text-align: end;
+          }
+          & > span:last-child {
+            text-align: start;
+          }
+        }
+        &:last-child {
+          margin: 32px 0 0 0;
+          flex-direction: row;
+          & > span:first-child {
+            text-align: start;
+          }
+          & > span:last-child {
+            text-align: end;
           }
         }
       }
