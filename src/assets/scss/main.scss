@@ -134,7 +134,8 @@
 
 .project-description {
     margin: 0 0 32px 0;
-    padding: 0 64px;
+    padding: 0 32px;
+    text-align: justify;
     &::first-letter {
         margin: 0.1em 0.1em 0 0;
         float: left;
@@ -305,8 +306,7 @@
     }
 
     .project-description {
-        padding: 16px 48px;
-        text-align: justify;
+        padding: 16px 32px;
     }
     .page-content-container {
         padding: 0 48px;

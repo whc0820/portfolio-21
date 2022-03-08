@@ -34,15 +34,13 @@
             Recently, I'm learning some framework in order to boost the
             performance and efficiency of the development task, and I'm also
             focus on the security mechanisms, better resource management,
-            utilization for smaller project size and faster loading speed. Here
-            are some techniques I'm woking on these days: Vue, Bootstrap,
-            Greensock, SCSS.
+            utilization for smaller project size and faster loading speed.
           </p>
           <p>
             Outside of my professional and coding lives, I love watching
             <span class="highlighted-text"> anime </span>
             and I'm also a
-            <span class="highlighted-text"> electric guitar player </span>
+            <span class="highlighted-text"> electric guitar player</span>
             loves playing rock and covering anime music! I'm often too
             enthusiastic about doing something, that I've accidentally ruptured
             my tendors while playing it once.
@@ -133,7 +131,7 @@
       <div class="section-max-width">
         <div class="section-header">
           <span>04.</span>
-          <span>Get in touch</span>
+          <span>Contact</span>
         </div>
         <div class="contact-content">
           <p>
@@ -359,13 +357,14 @@ export default {
 }
 
 .about-content {
-  margin: 0 64px;
-  width: calc(100% - 128px);
+  margin: 0 32px;
+  width: calc(100% - 64px);
   display: inline-flex;
   flex-direction: column;
   & p {
     margin: 8px 0;
     font-size: 16px;
+    text-align: justify;
     color: rgba(255, 255, 255, 0.7);
   }
 }
@@ -415,8 +414,8 @@ export default {
 
 .exp-row,
 .exp-row-reverse {
-  margin: 0 64px 64px 64px;
-  width: calc(100% - 128px);
+  margin: 0 32px 64px 32px;
+  width: calc(100% - 64px);
   position: relative;
   display: flex;
   overflow: hidden;
@@ -532,9 +531,9 @@ export default {
 
 .table-row,
 .table-row-reverse {
-  margin: 0 64px;
+  margin: 0 32px;
   padding: 32px 0;
-  width: calc(100% - 128px);
+  width: calc(100% - 64px);
   display: inline-flex;
   position: relative;
 }
@@ -638,13 +637,14 @@ export default {
   justify-content: center;
 }
 .contact-content {
-  margin: 0 64px 64px 64px;
-  width: calc(100% - 128px);
+  margin: 0 32px 64px 32px;
+  width: calc(100% - 64px);
   display: inline-flex;
   flex-direction: column;
   justify-content: flex-start;
   & p {
     font-size: 16px;
+    text-align: justify;
     color: rgba(255, 255, 255, 0.7);
   }
   & a {
@@ -666,15 +666,10 @@ export default {
   }
 
   .contact-content {
-    margin: 0 64px 64px 64px;
-    width: calc(100% - 128px);
-  }
-
-  .exp-row,
-  .exp-row-reverse {
     margin: 0 32px 64px 32px;
     width: calc(100% - 64px);
   }
+
   .exp-row-left,
   .exp-row-right-reverse {
     margin: 0 32px 0 0;
@@ -719,10 +714,6 @@ export default {
       font-size: 24px;
       line-height: 24px;
     }
-  }
-
-  .about-content p {
-    text-align: justify;
   }
 
   .table-row,

@@ -36,7 +36,7 @@ export default {
 #section-project-nav {
   background: rgba($color: #000000, $alpha: 0.9);
   & .section-max-width {
-    padding: 48px 64px;
+    padding: 48px 32px;
     display: flex;
     flex-direction: row;
     & .nav-project {
@@ -50,9 +50,6 @@ export default {
       }
       &:hover span:last-child {
         color: #0ff;
-      }
-      &:last-child {
-        margin: 0 64px 0 0;
       }
     }
   }
@@ -77,12 +74,20 @@ export default {
   #section-project-nav {
     & .section-max-width {
       padding: 32px;
+      flex-direction: column;
       & .nav-project {
+        flex-direction: row-reverse;
+        justify-content: space-between;
         &:last-child {
-          margin-left: 16px;
+          margin: 32px 0 0 0;
+          flex-direction: row;
         }
-        & span:last-child {
-          font-size: 24px;
+        & > span {
+          text-align: center;
+          &:last-child {
+            line-height: 24px;
+            font-size: 24px;
+          }
         }
       }
     }

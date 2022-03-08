@@ -14,23 +14,13 @@
             ></span
           >
         </div>
-        <div class="footer-col">
-          <a id="github-icon" target="_blank" href="https://github.com/whc0820"
-            ><b-icon icon="github"></b-icon
-          ></a>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { BIcon } from "bootstrap-vue";
-
 export default {
-  components: {
-    BIcon,
-  },
 };
 </script>
 
@@ -44,7 +34,7 @@ export default {
   background: #1f1f1f;
 }
 .footer-content {
-  padding: 48px 64px 32px 64px;
+  padding: 48px 32px 32px 32px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -52,6 +42,7 @@ export default {
 
 }
 .footer-col {
+  width: 100%;
   display: flex;
   flex-direction: column;
   white-space: nowrap;
@@ -74,21 +65,13 @@ a {
   }
 }
 
-#github-icon {
-  line-height: 24px;
-  font-size: 24px;
-}
-
 @media only screen and (max-width: 768px) {
   .footer-content {
     flex-direction: column;
   }
   .footer-col {
-    &:first-child, &:nth-child(2) {
+    &:first-child {
       margin: 0 0 16px 0;
-    }
-    &:last-child {
-      margin: 8px 0 0 0;
     }
   }
 }
