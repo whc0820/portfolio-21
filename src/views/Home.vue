@@ -197,7 +197,7 @@ export default {
           desc: [
             'Tutor of the "Basic Programming" and "Windows Form Programming" course',
             "Maitain and develop course used website for collecting learning data of students",
-            "Research and analyze students' learning behaviors",
+            "Research and analyze students' help-seeking behaviors and tendencies by machine learning",
           ],
         },
         {
@@ -217,9 +217,9 @@ export default {
           endTime: "Jan. 2019",
           location: "Hsinchu, Taiwan",
           desc: [
-            "Mobile Application development in native Android to control smart home devices through API for the demonstration",
-            "Implement OAuth 2.0 server and website for account linking and control smart home devices with Google Assistant and Alex Skill Kits",
-            "Write shell script for automatic project building and remote deployment in Docker environment",
+            "Mobile Application development in native Android to control smart home devices through API for the Secutech 2018 demonstration",
+            "Cooperate with back-end to implement OAuth 2.0 server and website for account linking and control smart home devices with Google Assistant and Alex Skill Kits",
+            "Write shell script for automated project building and remote deployment in Docker environment",
             "Inspect and test API requests and responses follow by the Swagger's rules",
           ],
         },
